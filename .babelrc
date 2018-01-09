@@ -22,7 +22,6 @@
           },
         ],
         "@babel/plugin-transform-runtime",
-        "transform-decorators-legacy",
         "@babel/plugin-transform-react-constant-elements",
         "@babel/plugin-proposal-do-expressions",
         "@babel/plugin-proposal-export-default-from",
@@ -69,7 +68,6 @@
           },
         ],
         "@babel/plugin-transform-runtime",
-        "transform-decorators-legacy"
       ]
     }
   }

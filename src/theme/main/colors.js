@@ -1,3 +1,3 @@
 export default {
-  pink: '#E41F7B'
+  pink: '#F03861'
 }
