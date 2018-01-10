@@ -15,7 +15,8 @@ bench(1)
 console.log('[injectTheme]', theme)
 injectTheme(theme.main)
 injectGlobal`
-  pre {
+  pre,
+  code {
     font-family: Inconsolata, monospace;
   }
 `

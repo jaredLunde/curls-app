@@ -10,6 +10,7 @@ import {
   gridComponents,
   uiComponents,
   animationComponents,
+  theming,
   utilityComponents,
   utils
 } from '~/sitemap'
@@ -65,6 +66,9 @@ export default function (props = {}) {
         {SideBarDivider}
 
         {Section('UI Components', uiComponents)}
+        {SideBarDivider}
+
+        {Section('Theming', theming)}
         {SideBarDivider}
 
         {Section('Animation', animationComponents)}

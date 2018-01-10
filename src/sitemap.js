@@ -90,7 +90,17 @@ export const utils = [
   'createNode',
   'directionalScale',
   'getTheme',
-  'getComponentTheme',
   'supportsCSS',
   'withHoverQuery'
+]
+
+
+export const theming = [
+  'injectTheme',
+  'replaceTheme',
+  'injectRem',
+  'defaultColors',
+  'defaultHoverColors',
+  'defaultActiveColors',
+  'defaultTypeFaces'
 ]

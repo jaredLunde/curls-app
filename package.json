@@ -41,7 +41,6 @@
   },
   "dependencies": {
     "emotion": "^8.0.12",
-    "immutable": "^3.8.2",
     "invariant": "^2.2.2",
     "polished": "^1.9.0",
     "prop-types": "^15.6.0",
@@ -49,6 +48,8 @@
     "react-cake": "^0.4.2",
     "react-dom": "^16.2.0",
     "react-helmet": "^5.2.0",
+    "react-loadable": "^5.3.1",
+    "react-markdown": "^3.1.4",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2"
   },
@@ -58,7 +59,6 @@
     "build:commonjs": "rm -rf commonjs && cross-env NODE_ENV=cli babel ./src --out-dir commonjs",
     "build:es": "rm -rf es && cross-env NODE_ENV=production babel ./src --out-dir es",
     "build:dist": "rm -rf dist && webpack --config webpack.config.js --mode production",
-    "start:cli": "npm run node ./src/index.js",
     "watch:commonjs": "cross-env NODE_ENV=cli babel ./src -w --out-dir commonjs",
     "watch:es": "cross-env NODE_ENV=es babel ./src -w --out-dir es",
     "analyze": "cross-env NODE_ENV=production webpack --mode production --config webpack.config.js -j | webpack-bundle-size-analyzer"

@@ -12,15 +12,6 @@ module.exports = {
       'webpack-dev-server/client?http://0.0.0.0:3000',
       'webpack/hot/only-dev-server',
       'index.hot'
-    ],
-    vendor: [
-      'react',
-      'react-dom',
-      'immutable',
-      'react-router-dom',
-      'json3',
-      'url',
-      'prop-types'
     ]
   },
 
@@ -95,9 +86,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     // new webpack.DefinePlugin({'process.env': {NODE_ENV: '"development"'}}),
     new webpack.NamedModulesPlugin(),
-    new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/),
-    new webpack.optimize.CommonsChunkPlugin({names: ['vendor'],
-                                             filename: 'vendor.dev.js'}),
+    new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/)
   ],
 
   // Include mocks for when node.js specific modules may be required

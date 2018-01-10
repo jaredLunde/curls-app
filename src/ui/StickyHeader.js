@@ -16,13 +16,15 @@ const logoCSS = css`
 `
 
 
-export default class StickyHeader extends React.Component {
+export default class StickyHeader extends React.PureComponent {
   componentDidUpdate () {
-    this.hideHamburger()
+    if (this.hideHamburgerMenu) {
+      this.hideHamburgerMenu()
+    }
   }
 
   render () {
-    const props = this.props
+    const {componentName, ...props} = this.props
 
     return NavBar({
       nodeType: 'header',
@@ -34,7 +36,7 @@ export default class StickyHeader extends React.Component {
         <>
           {HamburgerMenu({
             children: ({hide}) => {
-              this.hideHamburger = hide
+              this.hideHamburgerMenu = hide
 
               return MainSideBar({
                 w: '100%',
@@ -57,7 +59,7 @@ export default class StickyHeader extends React.Component {
 
           {NavBar({
             nodeType: 'div',
-            justify: 'right',
+            justify: 'end',
             bs: 0,
             fluid: true,
             children: (
