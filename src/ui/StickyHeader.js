@@ -1,55 +1,84 @@
 import React from 'react'
 import {css} from 'emotion'
-import {A, Type, NavBar, maxZIndex} from 'styled-curls'
+import {Button, A, Link, Type, NavBar, maxZIndex} from 'styled-curls'
+import {Inject} from 'react-cake'
+import {Icon, MainSideBar, HamburgerMenu} from '~/ui'
 import {home, curlsRepo} from '~/sitemap'
 
 
-const logoCSS = css`transform: rotate(30deg);`
+const logoCSS = css`
+  position: absolute;
+  top: 8px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 64px;
+`
 
 
-export default function (props = {}) {
-  return NavBar({
-    sticky: true,
-    id: 'sticky-header',
-    className: maxZIndex,
-    ...props,
-    children: (
-      <>
-        {A({
-          bold: true,
-          p: 3,
-          href: home(),
-          children: (
-            <>
-              {Type({dib: true, className: logoCSS, children: '➰'})}
-              Curls
-            </>
-          )
-        })}
+export default class StickyHeader extends React.Component {
+  componentDidUpdate () {
+    this.hideHamburger()
+  }
 
-        {NavBar({
-          nodeType: 'div',
-          justify: 'right',
-          bs: 0,
-          fluid: true,
-          children: (
-            <>
-              {A({
-                href: curlsRepo(),
-                p: 3,
-                children: 'Docs'
-              })}
+  render () {
+    const props = this.props
 
-              {A({
-                href: curlsRepo(),
-                p: 3,
-                children: 'Source'
-              })}
-            </>
-          )
-        })}
-      </>
-    )
-  })
+    return NavBar({
+      nodeType: 'header',
+      id: 'sticky-header',
+      sticky: true,
+      className: maxZIndex,
+      ...props,
+      children: (
+        <>
+          {HamburgerMenu({
+            children: ({hide}) => {
+              this.hideHamburger = hide
 
+              return MainSideBar({
+                w: '100%',
+                h: 'auto',
+                p: 'x5 b5',
+                sticky: false
+              })
+            }
+          })}
+
+          {Link({
+            className: logoCSS,
+            color: 'darkestGrey',
+            md: true,
+            ultraHeavy: true,
+            to: home(),
+            rel: 'home',
+            children: Icon({name: 'logo', size: 'x2'})
+          })}
+
+          {NavBar({
+            nodeType: 'div',
+            justify: 'right',
+            bs: 0,
+            fluid: true,
+            children: (
+              <>
+                {A({
+                  href: curlsRepo(),
+                  rel: 'external',
+                  p: 3,
+                  md: true,
+                  color: 'grey',
+                  children: Icon({
+                    name: 'gitHub',
+                    size: 'md',
+                    title: 'View Source on GitHub'
+                  })
+                })}
+              </>
+            )
+          })}
+        </>
+      )
+    })
+  }
 }

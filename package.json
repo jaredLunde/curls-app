@@ -42,6 +42,8 @@
   "dependencies": {
     "emotion": "^8.0.12",
     "immutable": "^3.8.2",
+    "invariant": "^2.2.2",
+    "polished": "^1.9.0",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-cake": "^0.4.2",

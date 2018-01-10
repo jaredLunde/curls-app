@@ -1,3 +1,9 @@
+import {darken} from 'polished'
+
+
+const pink = '#F03861'
+
 export default {
-  pink: '#F03861'
+  pink,
+  darkPink: darken(0.10, pink),
 }

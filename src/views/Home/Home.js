@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {Row, Col, Type, H1, P, Box, A, NavBar, Button, maxZIndex} from 'styled-curls'
-import {Hero, StickyHeader} from '~/ui'
+import {css} from 'emotion'
+import {Row, Col, Divider, BreakPoint, Type, H1, H2, P, Box, A, NavBar, Button, maxZIndex} from 'styled-curls'
+import {Hero, StickyHeader, MainSideBar} from '~/ui'
 
 
 function InstallPre (props) {
@@ -14,41 +15,57 @@ function InstallPre (props) {
 
 
 export default function (props) {
-  return (
-    <>
-      {StickyHeader()}
-
-      <Hero>
-        {H1({
-          md: true,
-          center: true,
-          color: 'white',
-          children: 'A lightweight, unopinionated CSS-in-JS UI component framework'
-        })}
-
-        {P({color: 'white', face: 'mono', children: 'written with emotion.js'})}
-
-        {Box({
-          bg: 'white',
-          p: 'x3 y2',
-          m: 't3 x1 b5',
-          br: '2',
-          children: function (props) {
-            return (
-              Box({
-                flex: true,
-                row: true,
-                children: (
-                  <div>
-                    {InstallPre({...props, children: 'npm i curls'})}
-                    {InstallPre({...props, children: 'yarn add curls'})}
-                  </div>
-                )
-              })
-            )
+  return Row({
+    nowrap: true,
+    children: (
+      <>
+        {BreakPoint({
+          sm: true,
+          children: function ({matchesAny}) {
+            return !matchesAny && MainSideBar()
           }
         })}
-      </Hero>
-    </>
-  )
+
+        {Col({
+          children: (
+            <>
+              <StickyHeader/>
+
+              <Hero nodeType='main'>
+                {H1({
+                  md: true,
+                  center: true,
+                  color: 'white',
+                  children: 'A lightweight, unopinionated CSS-in-JS UI component framework'
+                })}
+
+                {P({color: 'white', face: 'mono', children: 'written with emotion.js'})}
+
+                {Box({
+                  bg: 'white',
+                  p: 'x3 y2',
+                  m: 't3 x1 b5',
+                  br: '2',
+                  children: function (props) {
+                    return (
+                      Box({
+                        flex: true,
+                        row: true,
+                        children: (
+                          <div>
+                            {InstallPre({...props, children: 'npm i curls'})}
+                            {InstallPre({...props, children: 'yarn add curls'})}
+                          </div>
+                        )
+                      })
+                    )
+                  }
+                })}
+              </Hero>
+            </>
+          )
+        })}
+      </>
+    )
+  })
 }

@@ -1,2 +1,7 @@
+export Hamburger from './Hamburger'
+export HamburgerMenu from './HamburgerMenu'
 export Hero from './Hero'
+export Icon from './Icon'
+export MainSideBar from './MainSideBar'
+export SideBar from './SideBar'
 export StickyHeader from './StickyHeader'

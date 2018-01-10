@@ -1,6 +1,8 @@
 export default {
-  defaultColor: 'darkGrey',
+  defaultColor: 'grey',
   hover: {
-    darkGrey: 'black'
+    colors: {
+      grey: 'black'
+    }
   }
 }
