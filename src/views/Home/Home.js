@@ -39,12 +39,32 @@ export default function (props) {
                   children: 'A lightweight, unopinionated CSS-in-JS UI component framework'
                 })}
 
-                {P({color: 'white', face: 'mono', children: 'written with emotion.js'})}
+                {P({
+                  m: 't2',
+                  color: 'white',
+                  face: 'mono',
+                  children: (
+                    <>
+                      written with
+                      {A({
+                        bg: 'darkPink',
+                        p: 'x2 b1',
+                        br: 1,
+                        m: 'l1',
+                        href: 'https://emotion.sh/',
+                        color: 'white',
+                        face: 'mono',
+                        rel: 'external',
+                        children: 'emotion.js'
+                      })}
+                    </>
+                  )
+                })}
 
                 {Box({
                   bg: 'white',
                   p: 'x3 y2',
-                  m: 't3 x1 b5',
+                  m: 't4 x1 b5',
                   br: '2',
                   children: function (props) {
                     return (

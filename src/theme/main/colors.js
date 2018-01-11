@@ -5,5 +5,5 @@ const pink = '#F03861'
 
 export default {
   pink,
-  darkPink: darken(0.10, pink),
+  darkPink: darken(0.20, pink),
 }

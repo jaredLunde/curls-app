@@ -16,6 +16,7 @@
         "@babel/stage-2"
       ],
       "plugins": [
+        ["emotion", { "hoist": true }],
         [
           "root-import", {
             "rootPathSuffix": "src"
@@ -48,6 +49,7 @@
         "@babel/stage-0",
       ],
       "plugins": [
+        ["emotion", { "sourceMap": true, "autoLabel": true }],
         [
           "root-import", {
             "rootPathSuffix": "src"
@@ -63,6 +65,7 @@
         "@babel/stage-2"
       ],
       "plugins": [
+        ["emotion", { "hoist": true }],
         [
           "root-import", {
             "rootPathSuffix": "src"

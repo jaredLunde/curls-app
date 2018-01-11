@@ -12,7 +12,7 @@ export default function (props) {
   return Col({
     w: 240,
     h: '100vh',
-    p: '4 b6',
+    p: '3 b5',
     bg: 'darkestGrey',
     bs: 4,
     touchScrolling: true,

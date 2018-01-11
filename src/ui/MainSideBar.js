@@ -17,10 +17,17 @@ import {
 
 
 function Heading (props) {
-  return H2({md: true, m: 'b2', ultraHeavy: true, color: 'white', ...props})
+  return H2({
+    md: true,
+    m: 'b2',
+    ultraHeavy: true,
+    ellipsis: true,
+    color: 'white',
+    ...props
+  })
 }
 
-const SideBarDivider = Divider({m: 'y4', bg: 'grey'})
+const SideBarDivider = Divider({m: 'y3', bg: 'grey'})
 
 function getLinks (componentNames) {
   return componentNames.map(
@@ -30,7 +37,7 @@ function getLinks (componentNames) {
           {NavLink({
             db: true,
             color: 'white',
-            p: 'y3',
+            p: 'y2',
             activeClassName: css`color: ${theme.main.colors['pink']}!important;`,
             ellipsis: true,
             to: apiDoc({componentName}),

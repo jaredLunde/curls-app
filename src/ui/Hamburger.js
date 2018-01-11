@@ -9,7 +9,7 @@ const defaultTheme = {
 }
 const themePath = 'hamburger'
 const lineCSS = css`
-  width: 32px;
+  width: 24px;
   height: 2px;
   border-radius: 1px;
   margin-top: 2px;

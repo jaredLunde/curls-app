@@ -41,7 +41,7 @@ export default class StickyHeader extends React.PureComponent {
               return MainSideBar({
                 w: '100%',
                 h: 'auto',
-                p: 'x5 b5',
+                p: 'x4 b4',
                 sticky: false
               })
             }

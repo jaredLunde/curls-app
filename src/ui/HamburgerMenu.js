@@ -7,7 +7,7 @@ import Hamburger_ from './Hamburger'
 function CloseBox_ ({toggle}) {
   return A({
     bg: 'darkestGrey',
-    p: '5 b3',
+    p: '4 b3',
     lg: true,
     db: true,
     color: 'pink',
