@@ -20,7 +20,7 @@ function getComputedStyles (element, styles, isMediaQuery) {
         // console.log('Property:', property, '| Value:', value)
         if (seen.indexOf(property) === -1 && computedValue !== void 0) {
           seen.push(property)
-          output.push(`${property}: ${isMediaQuery ? value : computedValue};`)
+          output.push(`${property}: ${isMediaQuery ? value : computedValue + ';'}`)
         }
       }
       else {
