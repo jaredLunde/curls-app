@@ -38,6 +38,7 @@ module.exports = {
     alias: {
       react: path.resolve('./node_modules/react'),
       'react-dom': path.resolve('./node_modules/react-dom'),
+      'react-cake': path.resolve('./node_modules/react-cake'),
       immutable: path.resolve('./node_modules/immutable'),
       'core-js': path.resolve('./node_modules/core-js'),
       'prop-types': path.resolve('./node_modules/prop-types'),

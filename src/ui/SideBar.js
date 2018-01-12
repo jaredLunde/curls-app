@@ -1,17 +1,17 @@
 import {css, cx} from 'emotion'
 import {Col, maxZIndex} from 'styled-curls'
-
+import {overflowY, minHeightVP} from '../styles'
 
 const sideBarCSS = css`
   ${maxZIndex};
-  overflow-y: auto;
-  min-height: 100%;
+  ${overflowY};
+  ${minHeightVP};
 `
 
 export default function (props) {
   return Col({
-    w: 240,
     h: '100vh',
+    fixed: true,
     p: '3 b5',
     bg: 'darkestGrey',
     bs: 4,

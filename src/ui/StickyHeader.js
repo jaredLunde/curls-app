@@ -8,7 +8,7 @@ import {home, curlsRepo} from '~/sitemap'
 
 const logoCSS = css`
   position: absolute;
-  top: 8px;
+  top: 11px;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -68,8 +68,6 @@ export default class StickyHeader extends React.PureComponent {
                   href: curlsRepo(),
                   rel: 'external',
                   p: 3,
-                  md: true,
-                  color: 'grey',
                   children: Icon({
                     name: 'gitHub',
                     size: 'md',

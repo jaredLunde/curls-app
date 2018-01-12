@@ -1,22 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {css, sheet} from 'emotion'
+import {css} from 'emotion'
 import Loadable from 'react-loadable'
 import {Type, Row, Col, Card, Box, H1, BreakPoint} from 'styled-curls'
-import Markdown from 'react-markdown'
 import {Hero, StickyHeader, MainSideBar} from '~/ui'
-import {Styles} from '~/components'
+import {ScrollToTop} from '~/components'
+import {minHeightVP, minWidth0} from '~/styles'
+import Doc from './Doc'
 
-
-function InstallPre (props) {
-  return Type({
-    color: 'grey',
-    face: 'mono',
-    ...props
-  })
-}
-
-const minHeightVP = css`min-height: 100vh;`
 const docAliases = {
   BasicBox: 'Box/docs/BasicBox',
   GridBox: 'Box/docs/GridBox',
@@ -45,61 +36,13 @@ const docAliases = {
   withHoverQuery: 'utils/docs/withHoverQuery',
 }
 
+
 function aliasDocPath (componentName) {
   if (docAliases[componentName]) {
     return docAliases[componentName]
   }
 
   return `${componentName}/docs`
-}
-
-
-const cardCSS = css`max-width: 1024px;`
-
-
-function Doc ({match, docs, ...props}) {
-  const {componentName} = match.params
-  console.log(sheet)
-  return Box({
-    flex: true,
-    justify: 'center',
-    p: 3,
-    children: (
-      <div>
-        <Styles>
-          {function ({styles, computedStyle, classNames, elementRef}) {
-            console.log('[Class Names]', classNames)
-            console.log('[Styles]\n-------------------------\n', styles && styles.join('\n'))
-            console.log('[Computed Style]\n-------------------------\n', computedStyle && computedStyle.join('\n'))
-            return Card({
-              className: cardCSS,
-              bg: 'lightestGrey',
-              bs: 2,
-              br: 1,
-              p: 3,
-              innerRef: elementRef,
-              grow: true,
-              children: (
-                <>
-                  {H1({
-                    m: 'b3',
-                    lg: true,
-                    heavy: true,
-                    children: componentName
-                  })}
-
-                  {Type({
-                    nodeType: 'div',
-                    children: <Markdown source={docs && docs.description}/>
-                  })}
-                </>
-              )
-            })
-          }}
-        </Styles>
-      </div>
-    )
-  })
 }
 
 
@@ -116,29 +59,38 @@ export default function APIDocs (props) {
     }
   })
 
-  return Row({
-    nowrap: true,
-    children: (
-      <>
-        {BreakPoint({
-          sm: true,
-          children: function ({matchesAny}) {
-            return !matchesAny && MainSideBar()
-          }
-        })}
+  return (
+    <ScrollToTop>
+      {Row({
+        nowrap: true,
+        children: (
+          <>
+            {BreakPoint({
+              sm: true,
+              children: function ({matchesAny}) {
+                return !matchesAny && MainSideBar()
+              }
+            })}
 
-        {Col({
-          nodeType: 'main',
-          bg: 'pink',
-          className: minHeightVP,
-          children: (
-            <>
-              <StickyHeader componentName={componentName}/>
-              <LoadableDoc/>
-            </>
-          )
-        })}
-      </>
-    )
-  })
+            {Box({
+              bg: 'pink',
+              fluid: true,
+              className: [minWidth0, minHeightVP],
+              children: function ({className}) {
+                return (
+                  <div className={className}>
+                    <StickyHeader componentName={componentName}/>
+
+                    <main>
+                      <LoadableDoc/>
+                    </main>
+                  </div>
+                )
+              }
+            })}
+          </>
+        )
+      })}
+    </ScrollToTop>
+  )
 }

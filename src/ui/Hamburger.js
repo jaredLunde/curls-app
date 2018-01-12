@@ -4,7 +4,7 @@ import {Button, BasicBox, defaultColors, getTheme} from 'styled-curls'
 
 
 const defaultTheme = {
-  defaultColor: 'grey',
+  defaultColor: 'darkerGrey',
   colors: defaultColors
 }
 const themePath = 'hamburger'

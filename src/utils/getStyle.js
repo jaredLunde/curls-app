@@ -15,7 +15,11 @@ export default function (selectors, sheet) {
 
           if (rule.selectorText && rule.selectorText.indexOf(selector) !== -1) {
             rules = rules.concat(
-              rule.style.cssText
+              rule.parentStyleSheet.ownerNode.innerText
+                .replace(rule.selectorText, '')
+                .split('')
+                .slice(1, -1)
+                .join('')
                 .split(';')
                 .filter(rule => rule)
                 .map(rule => `${rule.trim()};`)

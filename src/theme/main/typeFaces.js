@@ -1,3 +1,3 @@
 export default {
-  mono: 'Inconsolata, monospace'
+  mono: '"Fira Code", monospace'
 }

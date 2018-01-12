@@ -15,7 +15,6 @@ export default class Hero extends React.Component {
   render () {
     const {children, headerID, trimFrom, ...props} = this.props
     return CurlsHero({
-      bg: 'pink',
       p: 'x3',
       trimHeight: this.headerEl,
       ...props,

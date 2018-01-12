@@ -12,10 +12,11 @@ function getComputedStyle (element, styles) {
     const style = styles[x]
     const [property, value] = style.split(':').map(v => v.trim())
     const camelProperty = kebabToCamel(property)
+    const computedValue = computedStyles[camelProperty]
     // console.log('Property:', property, '| Value:', value)
-    if (seen.indexOf(property) === -1) {
+    if (seen.indexOf(property) === -1 && computedValue !== void 0) {
       seen.push(property)
-      output.push(`${property}: ${computedStyles[camelProperty]};`)
+      output.push(`${property}: ${computedValue};`)
     }
   }
 

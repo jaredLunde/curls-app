@@ -1,7 +1,7 @@
 import React from 'react'
 import {BrowserRouter, Route, Switch, Link} from 'react-router-dom'
 import {injectGlobal} from 'emotion'
-import {injectTheme} from 'styled-curls'
+import {injectTheme, defaultColors} from 'styled-curls'
 import * as theme from './theme'
 import * as sitemap from './sitemap'
 import {Home, APIDoc} from './views'
@@ -15,9 +15,51 @@ bench(1)
 console.log('[injectTheme]', theme)
 injectTheme(theme.main)
 injectGlobal`
+  body {
+    background: ${theme.main.colors.pink};
+  }
+
+  @font-face{
+    font-family: 'Fira Code';
+    src: url('/assets/typeFaces/eot/FiraCode-Regular.eot');
+    src: url('/assets/typeFaces/eot/FiraCode-Regular.eot') format('embedded-opentype'),
+         url('/assets/typeFaces/woff2/FiraCode-Regular.woff2') format('woff2'),
+         url('/assets/typeFaces/woff/FiraCode-Regular.woff') format('woff'),
+         url('/assets/typeFaces/ttf/FiraCode-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face{
+    font-family: 'Fira Code';
+    src: url('/assets/typeFaces/eot/FiraCode-Bold.eot');
+    src: url('/assets/typeFaces/eot/FiraCode-Bold.eot') format('embedded-opentype'),
+         url('/assets/typeFaces/woff2/FiraCode-Bold.woff2') format('woff2'),
+         url('/assets/typeFaces/woff/FiraCode-Bold.woff') format('woff'),
+         url('/assets/typeFaces/ttf/FiraCode-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
+
   pre,
   code {
-    font-family: Inconsolata, monospace;
+    font-family: "Fira Code", monospace;
+    white-space: pre;
+    word-wrap:normal;
+    word-break:keep-all;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  pre {
+    overflow-x: auto;
+  }
+
+  .hljs {
+    background: transparent;
+  }
+
+  select {
+    font-size: 1rem;
   }
 `
 

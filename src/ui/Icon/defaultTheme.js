@@ -1,5 +1,5 @@
 export const defaultSize = 'md'
-export const defaultColor = 'grey'
+export const defaultColor = 'darkerGrey'
 export const scale = {
   xxs: 1/2,
   xs: 3/4,
