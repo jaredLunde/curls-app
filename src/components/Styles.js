@@ -4,7 +4,7 @@ import {getStyle, getMediaStyle, kebabToCamel} from '~/utils'
 import {sheet} from 'emotion'
 
 
-function getComputedStyles (element, styles) {
+function getComputedStyles (element, styles, isMediaQuery) {
   let output = []
   const seen = []
   const computedStyles = window.getComputedStyle(element, null)
@@ -20,11 +20,11 @@ function getComputedStyles (element, styles) {
         // console.log('Property:', property, '| Value:', value)
         if (seen.indexOf(property) === -1 && computedValue !== void 0) {
           seen.push(property)
-          output.push(`${property}: ${computedValue};`)
+          output.push(`${property}: ${isMediaQuery ? value : computedValue};`)
         }
       }
       else {
-        output.push(getComputedStyles(element, style))
+        output.push(getComputedStyles(element, style, isMediaQuery))
       }
     }
   } else {
@@ -33,11 +33,11 @@ function getComputedStyles (element, styles) {
     for (let selector in styles) {
       if (selector.indexOf('@media') > -1) {
         if (window.matchMedia(selector.replace('@media', '').trim()).matches) {
-          output[selector] = getComputedStyles(element, styles[selector])
+          output[selector] = getComputedStyles(element, styles[selector], true)
         }
       }
       else {
-        output[selector] = getComputedStyles(element, styles[selector])
+        output[selector] = getComputedStyles(element, styles[selector], isMediaQuery)
       }
     }
   }
