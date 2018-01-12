@@ -2,10 +2,9 @@ import React from 'react'
 import formToObject from 'object-from-form'
 import {Toggle, createOptimized} from 'react-cake'
 import {Box, Flex, Row, Col, Type, A, BreakPoint, H2} from 'styled-curls'
-import cssbeautify from 'cssbeautify'
 import {Styles} from '~/components'
 import {minWidth0} from '~/styles'
-import {stringifyComponent, ignoreEmptyProps, replaceEmptyProps} from './utils'
+import {formatStyles, stringifyComponent, ignoreEmptyProps, replaceEmptyProps} from './utils'
 import CodeBlock from '../CodeBlock'
 import Controls from './Controls'
 import ToggleCodeView from './ToggleCodeView'
@@ -96,7 +95,7 @@ export default class Preview extends React.PureComponent {
           })}
 
           <Styles>
-            {({styles, computedStyle, classNames, elementRef}) => {
+            {({styles, computedStyles, classNames, elementRef}) => {
               return (
                 <>
                   {renderComponent(Component, this.state, elementRef)}
@@ -106,14 +105,14 @@ export default class Preview extends React.PureComponent {
                       grow: 1,
                       bw: 't1',
                       language: 'css',
-                      children: cssbeautify(`${classNames.join(', ')} {${styles.join('')}}`, {indent: '  '})
+                      children: formatStyles(styles)
                     }),
                     headingB: 'COMPUTED STYLES',
                     componentB: CodeBlock({
                       grow: 1,
                       bw: 't1',
                       language: 'css',
-                      children: cssbeautify(`${classNames.join(', ')} {${computedStyle.join('')}}`, {indent: '  '})
+                      children: formatStyles(computedStyles)
                     })
                   })}
                 </>

@@ -1,18 +1,21 @@
-// https://stackoverflow.com/a/16112771
+import getStyle from './getStyle'
+
+const mediaRe = /(.*?){/g
 function defaultReplacer (rule, innerText) {
   return (
     innerText
-    .replace(rule.selectorText, '')
+    .replace(mediaRe, '')
     .split('')
-    .slice(1, -1)
+    .slice(0, -2)
     .join('')
     .split(';')
-    .filter(rule => rule.trim())
+    .filter(rule => rule)
     .map(rule => `${rule.trim()};`)
   )
 }
 
 
+// https://stackoverflow.com/a/16112771
 export default function (selectors, sheet, replacer = defaultReplacer) {
   const sheets = sheet.tags
   let rules = []
@@ -27,10 +30,12 @@ export default function (selectors, sheet, replacer = defaultReplacer) {
           if (!selector) { continue }
           const rule = sheet.cssRules[j]
 
-          if (rule.selectorText && rule.selectorText.indexOf(selector) !== -1) {
-            rules = rules.concat(
-              {[rule.selectorText]: replacer(rule, rule.parentStyleSheet.ownerNode.innerText)}
-            )
+          if (rule.media) {
+            const mediaRules = getStyle([selector], {tags: [{sheet: rule}]}, replacer)
+
+            if (mediaRules.length) {
+              rules = rules.concat({[`@media ${rule.media.mediaText}`]: mediaRules})
+            }
           }
         }
       }
