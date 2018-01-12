@@ -1,4 +1,5 @@
 import React from 'react'
+import {ViewportSize, compose} from 'react-cake'
 import {getStyle, getMediaStyle, kebabToCamel} from '~/utils'
 import {sheet} from 'emotion'
 
@@ -30,7 +31,14 @@ function getComputedStyles (element, styles) {
     output = {}
 
     for (let selector in styles) {
-      output[selector] = getComputedStyles(element, styles[selector])
+      if (selector.indexOf('@media') > -1) {
+        if (window.matchMedia(selector.replace('@media', '').trim()).matches) {
+          output[selector] = getComputedStyles(element, styles[selector])
+        }
+      }
+      else {
+        output[selector] = getComputedStyles(element, styles[selector])
+      }
     }
   }
 
@@ -38,7 +46,7 @@ function getComputedStyles (element, styles) {
 }
 
 
-export default class Style extends React.Component {
+class Styles extends React.PureComponent {
   setElementRef = el => {
     if (el !== this.element) {
       this.element = el
@@ -64,3 +72,6 @@ export default class Style extends React.Component {
     return this.props.children({elementRef, classNames, styles, computedStyles})
   }
 }
+
+
+export default compose([ViewportSize, Styles])

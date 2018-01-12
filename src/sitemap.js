@@ -29,9 +29,7 @@ export function curlsSrc (opt = {}) {
 
 export const cssComponents = [
   'Box',
-  'GridBox',
   'BasicBox',
-  'Grid',
   'Flex',
 ]
 
@@ -39,6 +37,8 @@ export const cssComponents = [
 export const gridComponents = [
   'Col',
   'Row',
+  'GridBox',
+  'Grid',
 ]
 
 

@@ -66,7 +66,7 @@ export default function (props = {}) {
     ...props,
     children: (
       <>
-        {Section('CSS Components', cssComponents)}
+        {Section('Base Components', cssComponents)}
         {SideBarDivider}
 
         {Section('Grid Components', gridComponents)}
