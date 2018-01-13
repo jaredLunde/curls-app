@@ -23,7 +23,7 @@ export default function ({name, key, onChange, defaultValue = ''}) {
         children: function ({CheckBoxInput, toggle, isChecked}) {
           return(
             <div className={className} onClick={toggle}>
-              {CheckBoxInput({w: 36, h: 36, p: 2, children: CheckMark})}
+              {CheckBoxInput({w: 36, h: 36, p: 2, bg: 'lightestGrey', children: CheckMark})}
               {ControlLabel({name, inputID})}
             </div>
           )

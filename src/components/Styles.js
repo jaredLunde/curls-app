@@ -64,7 +64,6 @@ class Styles extends React.PureComponent {
       classNames = this.element.className.split(' ').filter(cn => cn.length).map(cn => `.${cn}`)
       styles = getStyle(classNames, sheet)
       styles = [...styles, ...getMediaStyle(classNames, sheet)]
-      console.log('Styles:', styles)
       computedStyles = getComputedStyles(this.element, styles)
     }
 

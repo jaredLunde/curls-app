@@ -33,7 +33,7 @@ export default class Preview extends React.PureComponent {
 
   componentDidUpdate (prevProps, prevState) {
     if (prevState !== this.state) {
-      this.forceUpdate() // Updates the <Style> component
+      this.forceUpdate() // Updates the <Styles> component
     }
   }
 
@@ -86,11 +86,11 @@ export default class Preview extends React.PureComponent {
               children: stringifyComponent(componentName, type, this.state)
             }),
             headingB: 'DIRECT FUNCTION',
-            componentB: CodeBlock({
+            componentB: this.props.isFunctional && CodeBlock({
               grow: 1,
               language: 'js',
               bw: 'y1',
-              children: stringifyComponent(componentName, type, this.state, this.props.isFunctional)
+              children: stringifyComponent(componentName, type, this.state, true)
             })
           })}
 
@@ -105,14 +105,14 @@ export default class Preview extends React.PureComponent {
                       grow: 1,
                       bw: 't1',
                       language: 'css',
-                      children: formatStyles(styles)
+                      children: formatStyles(styles) || 'null'
                     }),
                     headingB: 'COMPUTED STYLES',
                     componentB: CodeBlock({
                       grow: 1,
                       bw: 't1',
                       language: 'css',
-                      children: formatStyles(computedStyles)
+                      children: formatStyles(computedStyles) || 'null'
                     })
                   })}
                 </>

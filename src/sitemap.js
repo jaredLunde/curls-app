@@ -28,17 +28,17 @@ export function curlsSrc (opt = {}) {
 
 
 export const cssComponents = [
-  'Box',
-  'BasicBox',
   'Flex',
+  'BasicBox',
+  'Box',
 ]
 
 
 export const gridComponents = [
+  'Grid',
+  'GridBox',
   'Col',
   'Row',
-  'GridBox',
-  'Grid',
 ]
 
 

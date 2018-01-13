@@ -19,6 +19,10 @@ injectGlobal`
     background: ${theme.main.colors.pink};
   }
 
+  p {
+    margin-bottom: 1rem;
+  }
+  
   @font-face{
     font-family: 'Fira Code';
     src: url('/assets/typeFaces/eot/FiraCode-Regular.eot');

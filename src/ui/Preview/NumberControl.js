@@ -13,7 +13,7 @@ export default function ({name, key, onChange, defaultValue = ''}) {
             name,
             id: inputID,
             type: 'number',
-            bg: 'white',
+            bg: 'lightestGrey',
             onChange,
             w: 50,
             defaultValue
