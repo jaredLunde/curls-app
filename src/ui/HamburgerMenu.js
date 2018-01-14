@@ -9,7 +9,7 @@ function CloseBox_ ({toggle}) {
     bg: 'darkestGrey',
     p: '4 b3',
     lg: true,
-    db: true,
+    d: 'block',
     color: 'pink',
     onClick: toggle,
     children: '✕'

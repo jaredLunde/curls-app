@@ -27,7 +27,7 @@ export default function (props) {
     br: 0,
     p: '0',
     m: '3',
-    pr: true,
+    pos: 'relative',
     ...props,
     children: BasicBox({
       bg: props.color || theme.defaultColor,

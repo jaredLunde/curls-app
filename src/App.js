@@ -15,6 +15,9 @@ bench(1)
 console.log('[injectTheme]', theme)
 injectTheme(theme.main)
 injectGlobal`
+  html {
+    font-size: 100%;
+  }
   body {
     background: ${theme.main.colors.pink};
   }
@@ -22,7 +25,7 @@ injectGlobal`
   p {
     margin-bottom: 1rem;
   }
-  
+
   @font-face{
     font-family: 'Fira Code';
     src: url('/assets/typeFaces/eot/FiraCode-Regular.eot');

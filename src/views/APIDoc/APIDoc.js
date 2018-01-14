@@ -62,7 +62,7 @@ export default function APIDocs (props) {
   return (
     <ScrollToTop>
       {Row({
-        nowrap: true,
+        wrap: 'no',
         children: (
           <>
             {BreakPoint({

@@ -6,8 +6,10 @@ import SideBar from './SideBar'
 import * as theme from '~/theme'
 import {
   apiDoc,
+  basics,
   cssComponents,
   gridComponents,
+  guides,
   uiComponents,
   animationComponents,
   theming,
@@ -29,18 +31,18 @@ function Heading (props) {
 
 const SideBarDivider = Divider({m: 'y3', bg: 'grey'})
 
-function getLinks (componentNames) {
+function getLinks (componentNames, sitemap = apiDoc) {
   return componentNames.map(
     function (componentName) {
       return (
         <li key={componentName}>
           {NavLink({
-            db: true,
+            d: 'block',
             color: 'white',
             p: 'y2',
             activeClassName: css`color: ${theme.main.colors['pink']}!important;`,
             ellipsis: true,
-            to: apiDoc({componentName}),
+            to: sitemap({componentName}),
             children: componentName
           })}
         </li>
@@ -50,12 +52,12 @@ function getLinks (componentNames) {
 }
 
 
-function Section (heading, components) {
+function Section (heading, components, sitemap) {
   return (
     <section>
       {Heading({children: heading})}
       <ul>
-        {getLinks(components)}
+        {getLinks(components, sitemap)}
       </ul>
     </section>
   )
@@ -66,6 +68,9 @@ export default function (props = {}) {
     ...props,
     children: (
       <>
+        {Section('Getting Started', basics, guides)}
+        {SideBarDivider}
+
         {Section('Base Components', cssComponents)}
         {SideBarDivider}
 

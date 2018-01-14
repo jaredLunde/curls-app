@@ -26,7 +26,11 @@ function getControl (name, prop, onChange) {
     default:
       if (prop.type.includes('bool')) {
         if (prop.type.includes('string')) {
-          Component = Text
+          if (prop.enumVals === void 0) {
+            Component = Text
+          } else {
+            Component = Enum
+          }
         }
         else if (prop.type.includes('number')) {
           Component = NumberControl

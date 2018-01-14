@@ -1,3 +1,4 @@
+export markdown from './markdown'
 export minHeightVP from './minHeightVP'
 export minWidth0 from './minWidth0'
 export overflowX from './overflowX'

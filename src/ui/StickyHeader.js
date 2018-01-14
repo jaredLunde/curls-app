@@ -29,7 +29,7 @@ export default class StickyHeader extends React.PureComponent {
     return NavBar({
       nodeType: 'header',
       id: 'sticky-header',
-      sticky: true,
+      pos: 'sticky',
       className: maxZIndex,
       ...props,
       children: (
@@ -42,7 +42,8 @@ export default class StickyHeader extends React.PureComponent {
                 w: '100%',
                 h: 'auto',
                 p: 'x4 b4',
-                sticky: false
+                bs: 0,
+                pos: 'relative'
               })
             }
           })}

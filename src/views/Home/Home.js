@@ -19,7 +19,7 @@ export default function (props) {
   return (
     <ScrollToTop>
       {Row({
-        nowrap: true,
+        wrap: 'no',
         children: (
           <>
             {BreakPoint({

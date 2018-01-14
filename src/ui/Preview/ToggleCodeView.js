@@ -12,7 +12,7 @@ function Heading (props) {
     p: 'x3 y3',
     xxs: true,
     ultraHeavy: true,
-    dib: true,
+    d: 'inlineBlock',
     color: 'white',
     ...props
   })

@@ -5,6 +5,12 @@ export function home () {
   return '/'
 }
 
+
+export function guides ({componentName}) {
+  return `/${componentName}`
+}
+
+
 export function apiDoc ({componentName}) {
   return `/api/${componentName}`
 }
@@ -27,6 +33,13 @@ export function curlsSrc (opt = {}) {
 }
 
 
+export const basics = [
+  'Installation',
+  'Philosophy',
+  'Theming',
+]
+
+
 export const cssComponents = [
   'Flex',
   'BasicBox',
@@ -39,6 +52,7 @@ export const gridComponents = [
   'GridBox',
   'Col',
   'Row',
+  'BreakPoint',
 ]
 
 
@@ -78,7 +92,6 @@ export const animationComponents = [
 
 
 export const utilityComponents = [
-  'BreakPoint',
   'FillViewport',
   'MediaQuery',
 ]

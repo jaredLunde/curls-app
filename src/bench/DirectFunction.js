@@ -12,7 +12,7 @@ export default function (props) {
   return (
     <>
       {NavBar({
-        sticky: true,
+        pos: 'sticky',
         className: maxZIndex,
         children: (
           <>
@@ -22,7 +22,7 @@ export default function (props) {
               href: home(),
               children: (
                 <>
-                  {Type({dib: true, className: logoCSS, children: '➰'})}
+                  {Type({d: 'inlineBlock', className: logoCSS, children: '➰'})}
                   Curls
                 </>
               )

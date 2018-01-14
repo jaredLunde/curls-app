@@ -11,9 +11,9 @@ const logoCSS = css`transform: rotate(30deg);`
 export default function (props) {
   return (
     <>
-      <NavBar sticky className={maxZIndex}>
+      <NavBar pos='sticky' className={maxZIndex}>
         <A bold p={3} href={home()}>
-          {Type({dib: true, className: logoCSS, children: '➰'})}
+          {Type({d: 'inlineBlock', className: logoCSS, children: '➰'})}
           Curls
         </A>
 

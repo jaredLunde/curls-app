@@ -1,22 +1,15 @@
 import React from 'react'
 import {css} from 'emotion'
 import Markdown from 'react-markdown'
-import {Box, Card, H1, Type, Divider, defaultColors} from 'styled-curls'
-import {overflowX} from '~/styles'
+import {Box, Card, H1, Divider, defaultColors} from 'styled-curls'
+import {overflowX, markdown} from '~/styles'
 import {Styles} from '~/components'
-import {Preview, PropDefinitions} from '~/ui'
-import {main} from '~/theme'
+import {Preview, PropDefinitions, ThemeExample} from '~/ui'
 
 
 const cardCSS = css`
   ${overflowX};
   max-width: 1024px;
-`
-
-const markdownCSS = css`
-  & a {
-    color: ${main.colors.darkPink};
-  }
 `
 
 
@@ -41,18 +34,19 @@ export default function Doc ({match, docs, ...props}) {
                 p: 3,
                 lg: true,
                 ultraHeavy: true,
-                color: 'darkGrey',
                 children: componentName
               })}
 
-              {Type({
-                nodeType: 'div',
+              {Box({
                 p: 'x3 b3',
-                className: markdownCSS,
+                className: markdown,
                 children: <Markdown source={docs && docs.description}/>
               })}
 
               {PropDefinitions(docs)}
+
+              {docs.defaultTheme && ThemeExample(docs)}
+
               <Preview {...docs} componentName={componentName}/>
             </>
           )

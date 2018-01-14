@@ -14,11 +14,11 @@ export default function (props) {
     fixed: true,
     p: '3 b5',
     bg: 'darkestGrey',
-    bs: 4,
+    bs: 16,
     touchScrolling: true,
     grow: false,
     nodeType: 'nav',
-    sticky: true,
+    pos: 'sticky',
     ...props,
     className: cx(sideBarCSS, props.className)
   })

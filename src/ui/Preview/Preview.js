@@ -1,7 +1,7 @@
 import React from 'react'
 import formToObject from 'object-from-form'
 import {Toggle, createOptimized} from 'react-cake'
-import {Box, Flex, Row, Col, Type, A, BreakPoint, H2} from 'styled-curls'
+import {Grid, Box, Flex, Row, Col, Type, A, BreakPoint, H2} from 'styled-curls'
 import {Styles} from '~/components'
 import {minWidth0} from '~/styles'
 import {formatStyles, stringifyComponent, ignoreEmptyProps, replaceEmptyProps} from './utils'
@@ -11,11 +11,25 @@ import ToggleCodeView from './ToggleCodeView'
 
 
 function renderComponent (Component, props = {}, innerRef) {
-  return createOptimized(
-    Component,
-    {...props, innerRef},
-    props.children || null
-  )
+  return Box({
+    flex: true,
+    //p: 3,
+    pos: 'relative',
+    // bw: 'b1',
+    // bc: 'translucentLight',
+    bg: 'lightestGrey',
+    justify: 'center',
+    align: 'center',
+    children: (
+      <div>
+        {createOptimized(
+          Component,
+          {...props, innerRef},
+          props.children || null
+        )}
+      </div>
+    )
+  })
 }
 
 
@@ -77,28 +91,31 @@ export default class Preview extends React.PureComponent {
             {Controls({propTypes, onChange: this.setProps})}
           </form>
 
-          {ToggleCodeView({
-            headingA: 'JSX',
-            componentA: CodeBlock({
-              grow: 1,
-              language: 'html',
-              bw: 'y1',
-              children: stringifyComponent(componentName, type, this.state)
-            }),
-            headingB: 'DIRECT FUNCTION',
-            componentB: this.props.isFunctional && CodeBlock({
-              grow: 1,
-              language: 'js',
-              bw: 'y1',
-              children: stringifyComponent(componentName, type, this.state, true)
-            })
-          })}
 
           <Styles>
             {({styles, computedStyles, classNames, elementRef}) => {
               return (
                 <>
+                  {/** Component render example*/}
                   {renderComponent(Component, this.state, elementRef)}
+                  {/** Component output */}
+                  {ToggleCodeView({
+                    headingA: 'JSX',
+                    componentA: CodeBlock({
+                      grow: 1,
+                      language: 'html',
+                      bw: 'y1',
+                      children: stringifyComponent(componentName, type, this.state)
+                    }),
+                    headingB: 'DIRECT FUNCTION',
+                    componentB: this.props.isFunctional && CodeBlock({
+                      grow: 1,
+                      language: 'js',
+                      bw: 'y1',
+                      children: stringifyComponent(componentName, type, this.state, true)
+                    })
+                  })}
+                  {/** CSS output */}
                   {styles && ToggleCodeView({
                     headingA: 'EMOTION STYLES',
                     componentA: CodeBlock({

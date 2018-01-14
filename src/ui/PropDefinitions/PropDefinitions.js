@@ -1,15 +1,24 @@
 import React from 'react'
-import {Row, Flex, Box, Type, H2, Divider} from 'styled-curls'
+import {Row, Flex, Box, Type, H2, H3, Divider} from 'styled-curls'
 import Markdown from 'react-markdown'
 
 
 function PropType ({type, enumVals}) {
-  type = enumVals === void 0 ? type : enumVals.join(' | ')
+  let types = enumVals === void 0 ? type : [...enumVals]
+
+  if (enumVals) {
+    if (type.includes('bool')) {
+      types.unshift('true')
+    }
+
+    types = types.join(' | ')
+  }
+
   return Type({
     regular: true,
     color: 'grey',
     face: 'mono',
-    children: Array.isArray(type) ? type.join('|') : type
+    children: Array.isArray(types) ? types.join('|') : types
   })
 }
 
@@ -19,7 +28,9 @@ function PropDefinition (propName, prop) {
     m: 't2',
     children: (
       <div key={propName}>
-        {Type({
+        {H3({
+          sm: true,
+          d: 'inlineBlock',
           bold: true,
           m: 'r2',
           color: 'black',
@@ -46,15 +57,14 @@ export default function ({propTypes}) {
     p: 'x3',
     children: (
       <div>
-        {Divider({m: 'b3'})}
         {H2({
           p: 'b1',
           md: true,
           ultraHeavy: true,
           children: 'Props'
         })}
+
         {defs}
-        {Divider({m: 't3'})}
       </div>
     )
   })

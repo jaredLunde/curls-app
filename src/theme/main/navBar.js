@@ -1,4 +1,4 @@
 export default {
   defaultBg: 'white',
-  defaultBoxShadow: 2
+  defaultBoxShadow: 4
 }

@@ -1,6 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
+const Jarvis = require('webpack-jarvis');
+
 
 module.exports = {
   // The base directory for resolving the entry option
@@ -39,11 +40,11 @@ module.exports = {
       react: path.resolve('./node_modules/react'),
       'react-dom': path.resolve('./node_modules/react-dom'),
       'react-cake': path.resolve('./node_modules/react-cake'),
-      immutable: path.resolve('./node_modules/immutable'),
       'core-js': path.resolve('./node_modules/core-js'),
       'prop-types': path.resolve('./node_modules/prop-types'),
       lodash: path.resolve('./node_modules/lodash-es'),
-      emotion: path.resolve('./node_modules/emotion')
+      emotion: path.resolve('./node_modules/emotion'),
+      '@babel': path.resolve('./node_modules/@babel')
     },
     // Extensions used to resolve modules
     extensions: ['.js', '.react.js', '.scss', '.css']
@@ -87,7 +88,8 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     // new webpack.DefinePlugin({'process.env': {NODE_ENV: '"development"'}}),
     new webpack.NamedModulesPlugin(),
-    new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/)
+    new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/),
+    new Jarvis()
   ],
 
   // Include mocks for when node.js specific modules may be required
