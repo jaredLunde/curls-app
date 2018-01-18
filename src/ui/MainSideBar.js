@@ -20,16 +20,16 @@ import {
 
 function Heading (props) {
   return H2({
-    md: true,
+    sm: true,
     m: 'b2',
     ultraHeavy: true,
     ellipsis: true,
-    color: 'white',
+    color: 'darkGrey',
     ...props
   })
 }
 
-const SideBarDivider = Divider({m: 'y3', bg: 'grey'})
+const SideBarDivider = Divider({m: 'y3', bg: 'translucentLight'})
 
 function getLinks (componentNames, sitemap = apiDoc) {
   return componentNames.map(
@@ -37,10 +37,11 @@ function getLinks (componentNames, sitemap = apiDoc) {
       return (
         <li key={componentName}>
           {NavLink({
+            w: '100%',
             d: 'block',
-            color: 'white',
-            p: 'y2',
-            activeClassName: css`color: ${theme.main.colors['pink']}!important;`,
+            color: 'darkGrey',
+            p: 'y2 l3',
+            activeClassName: css`color: ${theme.main.colors['darkPink']}!important;`,
             ellipsis: true,
             to: sitemap({componentName}),
             children: componentName

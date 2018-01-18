@@ -77,8 +77,8 @@ export default function (props) {
                   Box({
                     flex: true,
                     row: true,
-                    children: (
-                      <div>
+                    children: ({className}) => (
+                      <div className={className}>
                         <pre className={props.className}>
                           npm i curls
                         </pre>

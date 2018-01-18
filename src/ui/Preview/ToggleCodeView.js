@@ -1,6 +1,6 @@
 import React from 'react'
 import {Col, Box, Row, A, BreakPoint} from 'styled-curls'
-import {Toggle} from 'react-cake'
+import Toggle from 'react-cake/es/Toggle'
 import {minWidth0} from '~/styles'
 
 
@@ -94,7 +94,7 @@ function FlatView ({componentA, componentB, headingA, headingB}) {
                 xxl: 8,
                 className: minWidth0,
                 bw: 'l1',
-                bc: 'translucentLight',
+                bc: 'darkGrey',
                 children: (
                   <>
                     {Heading({nodeType: 'span', children: headingB})}

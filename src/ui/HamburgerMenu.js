@@ -1,20 +1,25 @@
 import React from 'react'
-import {Inject} from 'react-cake'
-import {A, Drawer, BreakPoint} from 'styled-curls'
+import Inject from 'react-cake/es/Inject'
+import {Type, Button, Drawer, BreakPoint} from 'styled-curls'
+import {css} from 'emotion'
 import Hamburger_ from './Hamburger'
 
 
 function CloseBox_ ({toggle}) {
-  return A({
-    bg: 'darkestGrey',
+  return Button({
+    bg: 'lightestGrey',
     p: '4 b3',
-    lg: true,
     d: 'block',
-    color: 'pink',
+    br: 0,
+    w: '100%',
+    bw: 0,
+    justify: 'start',
     onClick: toggle,
-    children: '✕'
+    children: Type({md: true, children: '✕'})
   })
 }
+
+const drawerCSS = css`top: 0; bottom: auto;`
 
 
 export default function HamburgerMenu ({
@@ -28,12 +33,14 @@ export default function HamburgerMenu ({
     ...props,
     children: function ({matchesAll}) {
       return matchesAll && Drawer({
+        className: drawerCSS,
         fromBottom: true,
         children: function ({DrawerBox, toggle, hide, isVisible}) {
           return (
             <>
               <Inject>
                 {DrawerBox({
+                  className: drawerCSS,
                   w: '100%',
                   touchScrolling: true,
                   children: function ({isVisible, toggle}) {

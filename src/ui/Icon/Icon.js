@@ -1,5 +1,5 @@
 import React from 'react'
-import {Box, createComponent, getTheme} from 'styled-curls'
+import {Box, createComponent, getTheme, theme} from 'styled-curls'
 import invariant from 'invariant'
 import {camelToPascal} from '~/utils'
 import * as icons from './icons'
@@ -19,7 +19,6 @@ const SFC = createComponent({
 
 export default function Icon (props) {
   const SVG = icons[camelToPascal(props.name)]
-  const theme = getTheme(defaultTheme, props.theme, themePath)
   
   if (typeof process !== void 0 && process.env.NODE_ENV !== 'production') {
     invariant(
@@ -28,22 +27,22 @@ export default function Icon (props) {
     )
   }
 
-  return Box({
+  return SFC({
     ...props,
-    children: function (sfcProps) {
-      return SFC({
-        size: theme.defaultSize,
-        ...sfcProps,
+    children: function (boxProps) {
+      return Box({
+        ...boxProps,
         children: function (svgProps) {
           return SVG({
             'aria-labelledby': 'title',
             role: 'img',
             ...svgProps,
-            color: theme.colors[props.color || theme.defaultColor],
+            color: theme.colors[svgProps.color],
             title: svgProps.title || name,
           })
         }
       })
     }
   })
+
 }

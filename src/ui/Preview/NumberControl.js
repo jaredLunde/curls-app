@@ -12,10 +12,9 @@ export default function ({name, key, onChange, defaultValue = ''}) {
           {Input({
             name,
             id: inputID,
-            type: 'number',
-            bg: 'lightestGrey',
+            type: 'ontouchstart' in window ? 'tel' : 'number',
             onChange,
-            w: 50,
+            w: 70,
             defaultValue
           })}
 

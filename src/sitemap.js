@@ -70,6 +70,7 @@ export const uiComponents = [
   'NavLink',
   'Modal',
   'NavBar',
+  'Overlay',
   'PopOver',
   'TextArea',
   'Type',

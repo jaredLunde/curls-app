@@ -1,3 +1,5 @@
 export default {
-  defaultBorderWidth: 0
+  defaultProps: {
+    bw: 0
+  }
 }

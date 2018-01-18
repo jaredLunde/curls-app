@@ -6,7 +6,7 @@ const Jarvis = require('webpack-jarvis');
 module.exports = {
   // The base directory for resolving the entry option
   context: __dirname,
-  devtool: 'eval',
+  // devtool: 'eval',
   mode: 'development',
   entry: {
     app: [
@@ -53,7 +53,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /lodash$/,
+        test: /lodash|lodash-es|react-cake|styled-curls|@babel|core-js|react-dom|prop-types|emotion/,
         sideEffects: false
       },
       {
@@ -88,7 +88,6 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     // new webpack.DefinePlugin({'process.env': {NODE_ENV: '"development"'}}),
     new webpack.NamedModulesPlugin(),
-    new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/),
     new Jarvis()
   ],
 

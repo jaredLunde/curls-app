@@ -2,7 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {css} from 'emotion'
 import Loadable from 'react-loadable'
-import {Type, Row, Col, Card, Box, H1, BreakPoint} from 'styled-curls'
+import {Type, A, Divider, Button, Flex, Grid, GridBox, BasicBox, Row, Col, Card, Box, H1, BreakPoint} from 'styled-curls'
+import {benchmark} from '~/utils'
 import {Hero, StickyHeader, MainSideBar} from '~/ui'
 import {ScrollToTop} from '~/components'
 import {minHeightVP, minWidth0} from '~/styles'
@@ -73,7 +74,6 @@ export default function APIDocs (props) {
             })}
 
             {Box({
-              bg: 'pink',
               fluid: true,
               className: [minWidth0, minHeightVP],
               children: function ({className}) {

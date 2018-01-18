@@ -5,9 +5,8 @@
         "@babel/react",
         [
           "@babel/env", {
-            "debug": true,
-            "modules": false,
             "useBuiltIns": "usage",
+            "modules": false,
             "targets": {
               "browsers": "defaults"
             }
@@ -30,7 +29,9 @@
         "@babel/plugin-proposal-optional-chaining",
         "@babel/plugin-proposal-pipeline-operator",
         "transform-react-remove-prop-types",
-        "react-loadable/babel"
+        "react-loadable/babel",
+        "closure-elimination",
+        "polished"
       ]
     },
     "development": {
@@ -55,10 +56,12 @@
             "rootPathSuffix": "src"
           },
         ],
-        "react-hot-loader/babel"
+        "react-hot-loader/babel",
+        "closure-elimination",
+        "polished"
       ]
     },
-    "cli": {
+    "commonjs": {
       "presets": [
         "@babel/react",
         "@babel/env",
@@ -72,7 +75,8 @@
           },
         ],
         "@babel/plugin-transform-runtime",
-        "react-loadable/babel"
+        "react-loadable/babel",
+        "polished"
       ]
     }
   }

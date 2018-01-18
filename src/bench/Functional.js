@@ -41,14 +41,16 @@ export default function (props) {
           {function (props) {
             return (
               <Box flex row>
-                <div>
-                  <pre className={props.className}>
-                    npm i curls
-                  </pre>
-                  <pre className={props.className}>
-                    yarn add curls
-                  </pre>
-                </div>
+                {({className}) => (
+                  <div className={className}>
+                    <pre className={props.className}>
+                      npm i curls
+                    </pre>
+                    <pre className={props.className}>
+                      yarn add curls
+                    </pre>
+                  </div>
+                )}
               </Box>
             )
           }}

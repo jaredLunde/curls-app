@@ -1,7 +1,7 @@
 import React from 'react'
 import {css} from 'emotion'
 import Markdown from 'react-markdown'
-import {Box, Card, H1, Divider, defaultColors} from 'styled-curls'
+import {Box, Card, H1, Divider, Type, Button, Drop, Overlay, defaultColors} from 'styled-curls'
 import {overflowX, markdown} from '~/styles'
 import {Styles} from '~/components'
 import {Preview, PropDefinitions, ThemeExample} from '~/ui'
@@ -9,7 +9,7 @@ import {Preview, PropDefinitions, ThemeExample} from '~/ui'
 
 const cardCSS = css`
   ${overflowX};
-  max-width: 1024px;
+  max-width: 800px;
 `
 
 
@@ -20,27 +20,26 @@ export default function Doc ({match, docs, ...props}) {
   return !docs ? null : Box({
     flex: true,
     justify: 'center',
-    p: 2,
-    children: (
-      <div>
-        {Card({
+    p: 3,
+    children:  ({className}) => (
+      <div className={className}>
+        {Box({
           className: cardCSS,
-          bs: 2,
-          br: 1,
           grow: true,
-          children: (
-            <>
+          children: (boxProps) => (
+            <div {...boxProps}>
               {H1({
-                p: 3,
-                lg: true,
+                color: 'emphasisText',
+                p: 't2 b3',
+                xl: true,
                 ultraHeavy: true,
                 children: componentName
               })}
 
               {Box({
-                p: 'x3 b3',
+                p: 'b3',
                 className: markdown,
-                children: <Markdown source={docs && docs.description}/>
+                children: props => <Markdown source={docs && docs.description} {...props}/>
               })}
 
               {PropDefinitions(docs)}
@@ -48,7 +47,7 @@ export default function Doc ({match, docs, ...props}) {
               {docs.defaultTheme && ThemeExample(docs)}
 
               <Preview {...docs} componentName={componentName}/>
-            </>
+            </div>
           )
         })}
       </div>

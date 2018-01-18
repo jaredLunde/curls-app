@@ -5,7 +5,9 @@ export default function (props) {
   return Box({
     flex: true,
     column: true,
-    p: 2,
+    p: 'x1 y2',
+    bw: 'b1',
+    grow: 1,
     align: 'center',
     justify: 'center',
     ...props,

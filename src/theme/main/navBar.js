@@ -1,4 +1,7 @@
 export default {
-  defaultBg: 'white',
-  defaultBoxShadow: 4
+  defaultProps: {
+    bg: 'white',
+    bc: 'translucentLight',
+    bw: 'y1'
+  }
 }

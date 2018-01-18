@@ -3,6 +3,7 @@ import {Box} from 'styled-curls'
 import Bool from './Bool'
 import Enum from './Enum'
 import NumberControl from './NumberControl'
+import TextNumber from './TextNumber'
 import Text from './Text'
 
 
@@ -38,7 +39,7 @@ function getControl (name, prop, onChange) {
       }
       else if (prop.type.includes('number')) {
         if (prop.type.includes('string')) {
-          Component = Text
+          Component = TextNumber
         }
       }
       break;
@@ -71,9 +72,8 @@ export default function Controls ({propTypes, onChange, ...props}) {
     wrap: true,
     bg: 'white',
     bc: 'translucentLight',
-    bw: 'b1',
-    p: 'x2 b3',
-    justify: 'around',
+    bw: 't1',
+    justify: 'center',
     ...props,
     children: function ({className}) {
       return (

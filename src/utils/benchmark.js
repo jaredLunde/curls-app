@@ -9,6 +9,8 @@ export default function (fn, iterations = 1000) {
 
   console.log('------------------------------------')
   console.log('%cFunction', 'font-weight: 700', fn)
-  console.log('%cIterations/s:', 'font-weight: 700; color: green',
+  console.log('%c[Iterations/s]', 'font-weight: 700; color: green',
               1000.0 / (total / iterations))
+  console.log('%c[Avg render time]', 'font-weight: 700; color: green',
+              `${total / iterations}ms`)
 }

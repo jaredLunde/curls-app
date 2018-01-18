@@ -1,25 +1,38 @@
 import React from 'react'
 import {BrowserRouter, Route, Switch, Link} from 'react-router-dom'
 import {injectGlobal} from 'emotion'
-import {injectTheme, defaultColors} from 'styled-curls'
+import {injectTheme, theme as curlsTheme} from 'styled-curls'
 import * as theme from './theme'
 import * as sitemap from './sitemap'
 import {Home, APIDoc} from './views'
-import {version} from '../package.json';
-import bench from './bench'
+import {version} from '../package.json'
 
 
 console.log(`%c➰`, 'font-size: 72px;')
 console.log(`%cCurls v${version}`, 'font-size: 24px;')
-bench(1)
-console.log('[injectTheme]', theme)
+console.log('[🎉 injectTheme]', theme)
 injectTheme(theme.main)
+
+
 injectGlobal`
   html {
     font-size: 100%;
   }
+
   body {
-    background: ${theme.main.colors.pink};
+    &:before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: .24;
+      z-index: -1;
+      background: url(https://t3.ftcdn.net/jpg/01/40/95/78/240_F_140957895_zs38qBJzRRqgTYmTBvc3PGFaukfY2eLr.jpg) repeat 0/64px 64px;
+    }
+
+    background: ${theme.main.body.backgroundColor};
   }
 
   p {
@@ -52,9 +65,13 @@ injectGlobal`
   code {
     font-family: "Fira Code", monospace;
     white-space: pre;
-    word-wrap:normal;
-    word-break:keep-all;
+    word-wrap: normal;
+    word-break: keep-all;
     -webkit-overflow-scrolling: touch;
+  }
+
+  code {
+    word-wrap: break-word;
   }
 
   pre {
@@ -67,6 +84,7 @@ injectGlobal`
 
   select {
     font-size: 1rem;
+    height: 2.25rem;
   }
 `
 

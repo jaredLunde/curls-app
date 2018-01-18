@@ -1,5 +1,6 @@
 import React from 'react'
-import {ViewportSize, compose} from 'react-cake'
+import compose from 'react-cake/es/utils/compose'
+import ViewportSize from 'react-cake/es/Viewport/ViewportSize'
 import {getStyle, getMediaStyle, kebabToCamel} from '~/utils'
 import {sheet} from 'emotion'
 

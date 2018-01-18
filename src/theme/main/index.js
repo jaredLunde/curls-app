@@ -1,4 +1,6 @@
 export active from './active'
+export body from './body'
+export box from './box'
 export button from './button'
 export colors from './colors'
 export hover from './hover'

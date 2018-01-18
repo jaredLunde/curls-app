@@ -1,6 +1,7 @@
 import React from 'react'
 import {Row, Flex, Box, Type, H2, H3, Divider} from 'styled-curls'
 import Markdown from 'react-markdown'
+import ContentBox from '../ContentBox'
 
 
 function PropType ({type, enumVals}) {
@@ -16,7 +17,7 @@ function PropType ({type, enumVals}) {
 
   return Type({
     regular: true,
-    color: 'grey',
+    color: 'accentText',
     face: 'mono',
     children: Array.isArray(types) ? types.join('|') : types
   })
@@ -25,21 +26,28 @@ function PropType ({type, enumVals}) {
 
 function PropDefinition (propName, prop) {
   return Box({
-    m: 't2',
-    children: (
-      <div key={propName}>
+    p: 'x2 t3 b1',
+    bw: 't1',
+    bg: 'asideBg',
+    children: ({className}) => (
+      <div key={propName} className={className}>
         {H3({
           sm: true,
           d: 'inlineBlock',
           bold: true,
-          m: 'r2',
-          color: 'black',
+          m: 'r2 b2',
+          face: 'mono',
+          color: 'emphasisText',
           children: propName
         })}
 
-        ({PropType(prop)})
+        {"{"}{PropType(prop)}{"}"}
 
-        <Markdown source={prop.description}/>
+        {Type({
+          color: 'accentText',
+          nodeType: 'div',
+          children: <Markdown source={prop.description}/>
+        })}
       </div>
     )
   })
@@ -47,25 +55,12 @@ function PropDefinition (propName, prop) {
 
 
 export default function ({propTypes}) {
-  const defs = []
+  const children = []
+
   for (let propName in propTypes) {
     const prop = propTypes[propName]
-    defs.push(PropDefinition(propName, prop))
+    children.push(PropDefinition(propName, prop))
   }
 
-  return Box({
-    p: 'x3',
-    children: (
-      <div>
-        {H2({
-          p: 'b1',
-          md: true,
-          ultraHeavy: true,
-          children: 'Props'
-        })}
-
-        {defs}
-      </div>
-    )
-  })
+  return ContentBox({heading: 'Props', children})
 }

@@ -7,5 +7,8 @@ export default {
     lg: 1.5,
     xl: 2.25,
     xxl: 3
+  },
+  defaultProps: {
+    color: 'primaryText'
   }
 }

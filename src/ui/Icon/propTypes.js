@@ -10,6 +10,5 @@ export default {
   sm: bool,
   xs: bool,
   xxs: bool,
-  color: string,
   name: string
 }

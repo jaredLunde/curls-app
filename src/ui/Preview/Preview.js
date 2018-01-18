@@ -1,6 +1,7 @@
 import React from 'react'
 import formToObject from 'object-from-form'
-import {Toggle, createOptimized} from 'react-cake'
+import Toggle from 'react-cake/es/Toggle'
+import createOptimized from 'react-cake/es/utils/createOptimized'
 import {Grid, Box, Flex, Row, Col, Type, A, BreakPoint, H2} from 'styled-curls'
 import {Styles} from '~/components'
 import {minWidth0} from '~/styles'
@@ -8,6 +9,7 @@ import {formatStyles, stringifyComponent, ignoreEmptyProps, replaceEmptyProps} f
 import CodeBlock from '../CodeBlock'
 import Controls from './Controls'
 import ToggleCodeView from './ToggleCodeView'
+import ContentBox from '../ContentBox'
 
 
 function renderComponent (Component, props = {}, innerRef) {
@@ -20,8 +22,8 @@ function renderComponent (Component, props = {}, innerRef) {
     bg: 'lightestGrey',
     justify: 'center',
     align: 'center',
-    children: (
-      <div>
+    children: ({className}) => (
+      <div className={className}>
         {createOptimized(
           Component,
           {...props, innerRef},
@@ -77,16 +79,11 @@ export default class Preview extends React.PureComponent {
   render () {
     const {Component, componentName, propTypes, type} = this.props
 
-    return Box({
-      children: boxProps => (
-        <div {...boxProps}>
-          {H2({
-            p: 't3 x3 b2',
-            md: true,
-            ultraHeavy: true,
-            children: 'Try me'
-          })}
-
+    return ContentBox({
+      m: 't4',
+      heading: 'Test drive',
+      children: (
+        <>
           <form ref={this.setFormRef}>
             {Controls({propTypes, onChange: this.setProps})}
           </form>
@@ -103,7 +100,7 @@ export default class Preview extends React.PureComponent {
                     headingA: 'JSX',
                     componentA: CodeBlock({
                       grow: 1,
-                      language: 'html',
+                      language: 'xml',
                       bw: 'y1',
                       children: stringifyComponent(componentName, type, this.state)
                     }),
@@ -136,7 +133,7 @@ export default class Preview extends React.PureComponent {
               )
             }}
           </Styles>
-        </div>
+        </>
       )
     })
   }

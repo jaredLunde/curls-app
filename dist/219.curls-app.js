@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[219],{328:function(n,o,e){"use strict";e.r(o),o.default="\n  The `Box` component provides `Flex` and `BasicBox` styles\n  to its child component.\n"}}]);

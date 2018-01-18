@@ -1,10 +1,11 @@
 import {css} from 'emotion'
+import {toSize} from 'styled-curls/es/utils'
 
 
 function sizeCSS (value, height) {
   return css`
-    width: ${value}rem;
-    height: ${height || value}rem;
+    width: ${toSize(value)};
+    height: ${toSize(height || value)};
   `
 }
 

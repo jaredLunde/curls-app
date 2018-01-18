@@ -1,12 +1,12 @@
 var path = require('path')
 var webpack = require('webpack')
 const Jarvis = require('webpack-jarvis')
-
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   // The base directory for resolving the entry option
   context: __dirname,
-  devtool: 'eval',
+  // devtool: 'eval',
   mode: 'production',
   entry: {app: 'index'},
 
@@ -27,7 +27,7 @@ module.exports = {
     // Directories that contain our modules
     symlinks: false,
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-    mainFields: ['jsnext:main', 'main', 'browser'],
+    mainFields: ['jsnext', 'esnext', 'jsnext:main', 'main', 'browser'],
     descriptionFiles: ['package.json'],
     moduleExtensions: ['-loader'],
     alias: {
@@ -47,7 +47,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /lodash-es|react-cake|styled-curls|core-js|prop-types|emotion/,
+        test: /lodash|lodash-es|react-cake|styled-curls|@babel|core-js|polished|react-dom|prop-types|emotion/,
         sideEffects: false
       },
       {
@@ -65,9 +65,28 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({'process.env': {NODE_ENV: '"production"'}}),
-    new webpack.NamedModulesPlugin(),
+    new webpack.ContextReplacementPlugin(/highlight\.js\/lib\/languages$/, /^\.\/(javascript|xml|css)$/),
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        compress: {
+          passes: 3,
+          keep_infinity: true,
+          // drop_console: true,
+          pure_getters: true,
+          unsafe: true,
+          unsafe_comps: true,
+          unsafe_Func: true,
+          unsafe_math: true,
+          unsafe_regexp: true,
+          warnings: false,
+          dead_code: true
+        },
+        output: {
+          comments: false
+        }
+      }
+    }),
     new webpack.LoaderOptionsPlugin({minimize: true, debug: false}),
-    new Jarvis()
   ],
 
   // Include mocks for when node.js specific modules may be required

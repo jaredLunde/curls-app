@@ -1,14 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {css} from 'emotion'
-import {Row, Col, Divider, BreakPoint, Type, H1, H2, P, Box, A, NavBar, Button, maxZIndex} from 'styled-curls'
-import {Hero, StickyHeader, MainSideBar} from '~/ui'
+import {Row, Col, Divider, Button, BreakPoint, Type, H1, H2, P, Box, A, NavBar, Flex, Grid, maxZIndex} from 'styled-curls'
+import {Hero, Icon, StickyHeader, MainSideBar} from '~/ui'
 import {ScrollToTop} from '~/components'
 
 
 function InstallPre (props) {
   return Type({
-    color: 'grey',
+    color: 'black',
     face: 'mono',
     ...props
   })
@@ -37,21 +37,22 @@ export default function (props) {
                     {H1({
                       md: true,
                       center: true,
-                      color: 'white',
+                      color: 'darkestGrey',
                       children: 'A lightweight, unopinionated CSS-in-JS UI component framework'
                     })}
 
                     {P({
                       m: 't2',
-                      color: 'white',
+                      color: 'darkestGrey',
                       face: 'mono',
                       children: (
                         <>
                           written with
                           {A({
-                            bg: 'darkPink',
-                            p: 'x2 b1',
+                            bg: 'pink',
+                            p: 'x2 y1',
                             br: 1,
+                            bw: 1,
                             m: 'l1',
                             href: 'https://emotion.sh/',
                             color: 'white',
@@ -64,17 +65,18 @@ export default function (props) {
                     })}
 
                     {Box({
-                      bg: 'white',
+                      bg: 'lightestGrey',
                       p: 'x3 y2',
                       m: 't4 x1 b5',
+                      bw: 1,
                       br: '2',
                       children: function (props) {
                         return (
                           Box({
                             flex: true,
                             row: true,
-                            children: (
-                              <div>
+                            children: ({className}) => (
+                              <div className={className}>
                                 {InstallPre({...props, children: 'npm i curls'})}
                                 {InstallPre({...props, children: 'yarn add curls'})}
                               </div>
