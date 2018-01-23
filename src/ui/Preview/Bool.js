@@ -10,7 +10,7 @@ function CheckMark ({isChecked}) {
 }
 
 
-export default function ({name, key, onChange, defaultValue = ''}) {
+export default function ({name, onChange, defaultValue = ''}) {
   return Control({
     name,
     children: function ({inputID, className}) {
@@ -21,7 +21,7 @@ export default function ({name, key, onChange, defaultValue = ''}) {
         checked: defaultValue || false,
         children: function ({CheckBoxInput, toggle, isChecked}) {
           return (
-            <div className={className} key={key} onClick={toggle}>
+            <div className={className} onClick={toggle}>
               {CheckBoxInput({w: 36, h: 36, p: 2, br: 1, bg: 'white', children: CheckMark})}
               {ControlLabel({name, inputID})}
             </div>

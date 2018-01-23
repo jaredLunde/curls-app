@@ -44,8 +44,7 @@ export const cssComponents = [
   'createComponent',
   'Flex',
   'BasicBox',
-  'Box',
-  'NodeBox'
+  'FlexBox'
 ]
 
 
@@ -59,6 +58,7 @@ export const gridComponents = [
 
 
 export const uiComponents = [
+  'Box',
   'Avatar',
   'Button',
   'Card',

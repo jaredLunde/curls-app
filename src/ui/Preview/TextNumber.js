@@ -3,12 +3,12 @@ import {Input} from 'styled-curls'
 import Control from './Control'
 import ControlLabel from './ControlLabel'
 
-export default function ({name, key, onChange, defaultValue = ''}) {
+export default function ({name, onChange, defaultValue = ''}) {
   return Control({
     name,
     children: function ({inputID, className}) {
       return (
-        <div className={className} key={key}>
+        <div className={className}>
           {Input({
             name,
             id: inputID,

@@ -72,28 +72,16 @@ export default function APIDocs (props) {
         </BreakPoint>
 
         <Box fluid className={[minWidth0, minHeightVP]}>
-          {function ({className}) {
-            return (
-              <div className={className}>
-                <BreakPoint sm>
-                  {function ({matchesAny}) {
-                    return matchesAny && <StickyHeader componentName={componentName}/>
-                  }}
-                </BreakPoint>
+          <BreakPoint sm>
+            {function ({matchesAny}) {
+              return matchesAny && <StickyHeader componentName={componentName}/>
+            }}
+          </BreakPoint>
 
-                <Box pos='relative'>
-                  {function ({className}) {
-                    return (
-                      <main className={className}>
-                        <Theming {...props}/>
-                        <LoadableDoc/>
-                      </main>
-                    )
-                  }}
-                </Box>
-              </div>
-            )
-          }}
+          <Box nodeType='main' pos='relative'>
+            <Theming {...props}/>
+            <LoadableDoc/>
+          </Box>
         </Box>
       </Row>
     </ScrollToTop>

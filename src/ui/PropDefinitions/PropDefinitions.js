@@ -26,23 +26,19 @@ function PropType ({type, enumVals}) {
 function PropDefinition (propName, prop) {
   return (
     <Box key={propName} p='x2 t3 b1' bw='t1' bg='asideBg'>
-      {({className}) => (
-        <div key={propName} className={className}>
-          <H3 sm bold d='inlineBlock' m='r2 b2' face='mono' color='emphasisText'>
-            {propName}
-          </H3>
+      <H3 sm bold d='inlineBlock' m='r2 b2' face='mono' color='emphasisText'>
+        {propName}
+      </H3>
 
-          <Type color='emphasisText'>
-            {"{"}
-            {PropType(prop)}
-            {"}"}
-          </Type>
+      <Type color='emphasisText'>
+        {"{"}
+        {PropType(prop)}
+        {"}"}
+      </Type>
 
-          <Type nodeType='div' color='accentText'>
-            <Markdown source={prop.description}/>
-          </Type>
-        </div>
-      )}
+      <Type nodeType='div' color='accentText'>
+        <Markdown source={prop.description}/>
+      </Type>
     </Box>
   )
 }

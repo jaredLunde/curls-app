@@ -46,7 +46,7 @@ function getControl (name, prop, onChange) {
   }
 
   if (Component) {
-    return Component({key: name, name, onChange, ...prop})
+    return <Component key={name} name={name} onChange={onChange} {...prop}/>
   }
 }
 
@@ -67,19 +67,9 @@ function getControls(propTypes, handleChange) {
 
 
 export default function Controls ({propTypes, onChange, ...props}) {
-  return Box({
-    flex: true,
-    wrap: true,
-    bg: 'asideBg',
-    bw: 't1',
-    justify: 'center',
-    ...props,
-    children: function ({className}) {
-      return (
-        <div className={className}>
-          {getControls(propTypes, onChange)}
-        </div>
-      )
-    }
-  })
+  return (
+    <Box flex wrap bg='asideBg' bw='t1' justify='center' {...props}>
+      {getControls(propTypes, onChange)}
+    </Box>
+  )
 }

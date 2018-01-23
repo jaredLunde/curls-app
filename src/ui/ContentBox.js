@@ -1,10 +1,10 @@
 import React from 'react'
-import {Box, H2} from 'styled-curls'
+import {FlexBox, H2} from 'styled-curls'
 
 
 export default function (props) {
   return (
-    <Box br='t1' bw={1} {...props}>
+    <FlexBox br='t1' bw={1} {...props}>
       {({className, heading, children}) => (
         <div className={className}>
           <H2
@@ -22,6 +22,6 @@ export default function (props) {
           {props.children}
         </div>
       )}
-    </Box>
+    </FlexBox>
   )
 }

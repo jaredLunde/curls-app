@@ -3,12 +3,12 @@ import {Input} from 'styled-curls'
 import Control from './Control'
 import ControlLabel from './ControlLabel'
 
-export default function ({name, key, enumVals, onChange, defaultValue = ''}) {
+export default function ({name, enumVals, onChange, defaultValue = ''}) {
   return Control({
     name,
     children: function ({inputID, className}) {
       return (
-        <div className={className} key={key}>
+        <div className={className}>
           <select name={name} id={inputID} onChange={onChange} defaultValue={defaultValue}>
             <option value=""/>
             {enumVals.map(v => <option key={v} value={v}>{v}</option>)}

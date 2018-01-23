@@ -10,5 +10,5 @@ export default {
   activeNav: '#31291E',
   asideBg: '#F5F2E2',
   asideHeaderBg: defaultColors.translucentWhite,
-  accent: '#F5F2E2'
+  accent: '#E3D9B6'
 }

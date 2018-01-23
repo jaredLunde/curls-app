@@ -1,5 +1,5 @@
 import React from 'react'
-import {Box, createComponent, getTheme, theme} from 'styled-curls'
+import {BasicBox, createComponent, getTheme, theme} from 'styled-curls'
 import invariant from 'invariant'
 import {camelToPascal} from '~/utils'
 import * as icons from './icons'
@@ -19,7 +19,7 @@ const SFC = createComponent({
 
 export default function Icon (props) {
   const SVG = icons[camelToPascal(props.name)]
-  
+
   if (typeof process !== void 0 && process.env.NODE_ENV !== 'production') {
     invariant(
       SVG,
@@ -30,7 +30,7 @@ export default function Icon (props) {
   return SFC({
     ...props,
     children: function (boxProps) {
-      return Box({
+      return BasicBox({
         ...boxProps,
         children: function (svgProps) {
           return SVG({

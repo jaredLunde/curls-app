@@ -64,74 +64,68 @@ export default function Theming (props) {
 
         return (
           <Box flex row wrap='no' p='2' pos='absolute' className={themingCSS}>
-            {function ({className}) {
-              return (
-                <div className={className}>
-                  <Row
-                    fluid
-                    row='reverse'
-                    touchScrolling
-                    ov='autoX'
-                    wrap='no'
-                    className={slideClassName}
-                  >
-                    <ButtonGroup>
-                      <ThemeButton onClick={setTheme('main')}>
-                        <Type>
-                          Stone
-                        </Type>
-                      </ThemeButton>
+            <Row
+              fluid
+              row='reverse'
+              touchScrolling
+              ov='autoX'
+              wrap='no'
+              className={slideClassName}
+            >
+              <ButtonGroup>
+                <ThemeButton onClick={setTheme('main')}>
+                  <Type>
+                    Stone
+                  </Type>
+                </ThemeButton>
 
-                      <ThemeButton onClick={setTheme('sepia')}>
-                        <Type ellipsis>
-                          Yellow Shift
-                        </Type>
-                      </ThemeButton>
+                <ThemeButton onClick={setTheme('sepia')}>
+                  <Type ellipsis>
+                    Yellow Shift
+                  </Type>
+                </ThemeButton>
 
-                      <ThemeButton bw={0} onClick={setTheme('night')}>
-                        <Type>
-                          Night
-                        </Type>
-                      </ThemeButton>
-                    </ButtonGroup>
+                <ThemeButton bw={0} onClick={setTheme('night')}>
+                  <Type>
+                    Night
+                  </Type>
+                </ThemeButton>
+              </ButtonGroup>
 
-                    <ButtonGroup align='end'>
-                      <ThemeButton onClick={() => changeRem(-12)}>
-                        <Type>
-                          Aa
-                        </Type>
-                      </ThemeButton>
+              <ButtonGroup align='end'>
+                <ThemeButton onClick={() => changeRem(-12)}>
+                  <Type>
+                    Aa
+                  </Type>
+                </ThemeButton>
 
-                      <ThemeButton bw={0} onClick={() => changeRem()}>
-                        <Type md>
-                          Aa
-                        </Type>
-                      </ThemeButton>
-                    </ButtonGroup>
+                <ThemeButton bw={0} onClick={() => changeRem()}>
+                  <Type md>
+                    Aa
+                  </Type>
+                </ThemeButton>
+              </ButtonGroup>
 
-                    <ButtonGroup>
-                      <ThemeButton onClick={setTypeFace('mono')}>
-                        <Type face='mono'>
-                          Mono
-                        </Type>
-                      </ThemeButton>
+              <ButtonGroup>
+                <ThemeButton onClick={setTypeFace('mono')}>
+                  <Type face='mono'>
+                    Mono
+                  </Type>
+                </ThemeButton>
 
-                      <ThemeButton bw={0} onClick={setTypeFace('system')}>
-                        <Type face='system'>
-                          System
-                        </Type>
-                      </ThemeButton>
-                    </ButtonGroup>
-                  </Row>
+                <ThemeButton bw={0} onClick={setTypeFace('system')}>
+                  <Type face='system'>
+                    System
+                  </Type>
+                </ThemeButton>
+              </ButtonGroup>
+            </Row>
 
-                  <ThemeButton fixed bw={0} onClick={toggle}>
-                    <Type md>
-                      ✎ Aa
-                    </Type>
-                  </ThemeButton>
-                </div>
-              )
-            }}
+            <ThemeButton fixed bw={0} onClick={toggle}>
+              <Type md>
+                ✎ Aa
+              </Type>
+            </ThemeButton>
           </Box>
         )
       }}

@@ -13,25 +13,15 @@ import ContentBox from '../ContentBox'
 
 
 function renderComponent (Component, props = {}, innerRef) {
-  return Box({
-    flex: true,
-    //p: 3,
-    pos: 'relative',
-    // bw: 'b1',
-    // bc: 'translucentLight',
-    bg: 'lightestGrey',
-    justify: 'center',
-    align: 'center',
-    children: ({className}) => (
-      <div className={className}>
-        {createOptimized(
-          Component,
-          {...props, innerRef},
-          props.children || null
-        )}
-      </div>
-    )
-  })
+  return (
+    <Box flex bw='b1' pos='relative' bg='accent' justify='center' align='center'>
+      {createOptimized(
+        Component,
+        {...props, innerRef},
+        props.children || null
+      )}
+    </Box>
+  )
 }
 
 
@@ -62,10 +52,17 @@ export default class Preview extends React.PureComponent {
       const key = objKeys[x]
       out[key] = propTypes[key].defaultValue
     }
-
-    if (type === 'Component') {
-      const children = propTypes.children && propTypes.children
-      out.children = children && children.example ? children.example : defaultChildren
+    
+    let children
+    switch (type) {
+      case 'Component':
+        children = propTypes.children && propTypes.children
+        out.children = children && children.example ? children.example : defaultChildren
+        break;
+      case 'UIComponent':
+        children = propTypes.children && propTypes.children
+        out.children = children && children.example ? children.example : null
+        break;
     }
 
     return ignoreEmptyProps(out)
@@ -79,62 +76,57 @@ export default class Preview extends React.PureComponent {
   render () {
     const {Component, componentName, propTypes, type} = this.props
 
-    return ContentBox({
-      m: 't4',
-      heading: 'Test drive',
-      children: (
-        <>
-          <form ref={this.setFormRef}>
-            {Controls({propTypes, onChange: this.setProps})}
-          </form>
+    return (
+      <ContentBox m='t4' heading='Test drive'>
+        <form ref={this.setFormRef}>
+          {Controls({propTypes, onChange: this.setProps})}
+        </form>
 
-
-          <Styles>
-            {({styles, computedStyles, classNames, elementRef}) => {
-              return (
-                <>
-                  {/** Component render example*/}
-                  {renderComponent(Component, this.state, elementRef)}
-                  {/** Component output */}
-                  {ToggleCodeView({
-                    headingA: 'JSX',
-                    componentA: CodeBlock({
-                      grow: 1,
-                      language: 'xml',
-                      bw: 'y1',
-                      children: stringifyComponent(componentName, type, this.state)
-                    }),
-                    headingB: 'DIRECT FUNCTION',
-                    componentB: this.props.isFunctional && CodeBlock({
-                      grow: 1,
-                      language: 'js',
-                      bw: 'y1',
-                      children: stringifyComponent(componentName, type, this.state, true)
-                    })
-                  })}
-                  {/** CSS output */}
-                  {styles && ToggleCodeView({
-                    headingA: 'EMOTION STYLES',
-                    componentA: CodeBlock({
-                      grow: 1,
-                      bw: 't1',
-                      language: 'css',
-                      children: formatStyles(styles) || 'null'
-                    }),
-                    headingB: 'COMPUTED STYLES',
-                    componentB: CodeBlock({
-                      grow: 1,
-                      bw: 't1',
-                      language: 'css',
-                      children: formatStyles(computedStyles) || 'null'
-                    })
-                  })}
-                </>
-              )
-            }}
-          </Styles>
-        </>
-      )
-    })
+        <Styles>
+          {({styles, computedStyles, classNames, elementRef}) => {
+            return (
+              <>
+                {/** Component render example*/}
+                {renderComponent(Component, this.state, elementRef)}
+                {/** Component output */}
+                {ToggleCodeView({
+                  headingA: 'JSX',
+                  componentA: CodeBlock({
+                    grow: 1,
+                    language: 'xml',
+                    bw: 'y1',
+                    children: stringifyComponent(componentName, type, this.state)
+                  }),
+                  headingB: 'DIRECT FUNCTION',
+                  componentB: this.props.isFunctional && CodeBlock({
+                    grow: 1,
+                    language: 'js',
+                    bw: 'y1',
+                    children: stringifyComponent(componentName, type, this.state, true)
+                  })
+                })}
+                {/** CSS output */}
+                {styles && ToggleCodeView({
+                  headingA: 'EMOTION STYLES',
+                  componentA: CodeBlock({
+                    grow: 1,
+                    bw: 't1',
+                    language: 'css',
+                    children: formatStyles(styles) || 'null'
+                  }),
+                  headingB: 'COMPUTED STYLES',
+                  componentB: CodeBlock({
+                    grow: 1,
+                    bw: 't1',
+                    language: 'css',
+                    children: formatStyles(computedStyles) || 'null'
+                  })
+                })}
+              </>
+            )
+          }}
+        </Styles>
+      </ContentBox>
+    )
   }
 }

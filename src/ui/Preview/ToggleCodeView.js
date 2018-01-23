@@ -8,14 +8,14 @@ const toggleCodeStyle = [{name: 'turnOnA', value: 'A'}, {name: 'turnOnB', value:
 
 
 function Heading (props) {
-  return A({
-    p: 'x3 y3',
-    xxs: true,
-    ultraHeavy: true,
-    d: 'inlineBlock',
-    color: 'white',
-    ...props
-  })
+  return <A
+    p='x3 y3'
+    xxs
+    ultraHeavy
+    d='inlineBlock'
+    color='white'
+    {...props}
+  />
 }
 
 
@@ -35,26 +35,21 @@ function ToggleableView ({
       {function ({turnOnA, turnOnB, value}) {
         return (
           <>
-            {Row({
-              wrap: false,
-              bg: 'black',
-              children: (
-                <>
-                  {Heading({
-                    onClick: turnOnA,
-                    role: 'button',
-                    color: value === viewAValue ? 'white' : 'lightGrey',
-                    children: headingA
-                  })}
-                  {Heading({
-                    onClick: turnOnB,
-                    role: 'button',
-                    color: value === viewAValue ? 'lightGrey' : 'white',
-                    children: headingB
-                  })}
-                </>
-              )
-            })}
+            <Row wrap={false} bg='black'>
+              {Heading({
+                onClick: turnOnA,
+                role: 'button',
+                color: value === viewAValue ? 'white' : 'lightGrey',
+                children: headingA
+              })}
+
+              {Heading({
+                onClick: turnOnB,
+                role: 'button',
+                color: value === viewAValue ? 'lightGrey' : 'white',
+                children: headingB
+              })}
+            </Row>
 
             {value === viewAValue ? componentA : componentB}
           </>
@@ -65,49 +60,27 @@ function ToggleableView ({
 }
 
 
-function FlatView ({componentA, componentB, headingA, headingB}) {
-  return Row({
-    align: 'stretch',
-    children: (
-      <>
-        {Row({
-          bg: 'black',
-          align: 'stretch',
-          children: (
-            <>
-              {Col({
-                flex: true,
-                column: true,
-                xxl: 8,
-                className: minWidth0,
-                children: (
-                  <>
-                    {Heading({nodeType: 'span', children: headingA})}
-                    {componentA}
-                  </>
-                )
-              })}
+function FlatViewCol (props) {
+  return <Col flex column xxl={8} className={minWidth0} {...props}/>
+}
 
-              {Col({
-                flex: true,
-                column: true,
-                xxl: 8,
-                className: minWidth0,
-                bw: 'l1',
-                bc: 'darkGrey',
-                children: (
-                  <>
-                    {Heading({nodeType: 'span', children: headingB})}
-                    {componentB}
-                  </>
-                )
-              })}
-            </>
-          )
-        })}
-      </>
-    )
-  })
+
+function FlatView ({componentA, componentB, headingA, headingB}) {
+  return (
+    <Row>
+      <Row bg='black'>
+        <FlatViewCol>
+          {Heading({nodeType: 'span', children: headingA})}
+          {componentA}
+        </FlatViewCol>
+
+        <FlatViewCol bw='l1' bc='darkGrey'>
+          {Heading({nodeType: 'span', children: headingB})}
+          {componentB}
+        </FlatViewCol>
+      </Row>
+    </Row>
+  )
 }
 
 
