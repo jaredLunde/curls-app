@@ -6,7 +6,7 @@ import ControlLabel from './ControlLabel'
 
 
 function CheckMark ({isChecked}) {
-  return isChecked ? Icon({name: 'checkMark', color: 'darkGreen'}) : null
+  return isChecked ? <Icon name='checkMark' color='darkGreen'/> : null
 }
 
 
@@ -17,13 +17,12 @@ export default function ({name, key, onChange, defaultValue = ''}) {
       return CheckBox({
         name,
         id: inputID,
-        key,
         onChange,
         checked: defaultValue || false,
         children: function ({CheckBoxInput, toggle, isChecked}) {
-          return(
-            <div className={className} onClick={toggle}>
-              {CheckBoxInput({w: 36, h: 36, p: 2, br: 1, bg: 'transparent', children: CheckMark})}
+          return (
+            <div className={className} key={key} onClick={toggle}>
+              {CheckBoxInput({w: 36, h: 36, p: 2, br: 1, bg: 'white', children: CheckMark})}
               {ControlLabel({name, inputID})}
             </div>
           )

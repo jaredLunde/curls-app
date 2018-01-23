@@ -1,12 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {css} from 'emotion'
+import {css, injectGlobal} from 'emotion'
 import Loadable from 'react-loadable'
-import {Type, A, Divider, Button, Flex, Grid, GridBox, BasicBox, Row, Col, Card, Box, H1, BreakPoint} from 'styled-curls'
+import {ThemeConsumer, Drop, injectRem, Type, A, Divider, Button, Flex, Grid, GridBox, BasicBox, Row, Col, Card, Box, H1, BreakPoint} from 'styled-curls'
 import {benchmark} from '~/utils'
-import {Hero, StickyHeader, MainSideBar} from '~/ui'
+import bench from '../../bench'
+import {Hero, StickyHeader, MainSideBar, Theming} from '~/ui'
 import {ScrollToTop} from '~/components'
 import {minHeightVP, minWidth0} from '~/styles'
+import * as theme from '~/theme'
 import Doc from './Doc'
 
 const docAliases = {
@@ -32,7 +34,7 @@ const docAliases = {
   createComponent: 'utils/docs/createComponent',
   createNode: 'utils/docs/createNode',
   directionalScale: 'utils/docs/directionalScale',
-  getTheme: 'utils/docs/getTheme',
+  mergeTheme: 'utils/docs/mergeTheme',
   supportsCSS: 'utils/docs/supportsCSS',
   withHoverQuery: 'utils/docs/withHoverQuery',
 }
@@ -62,35 +64,38 @@ export default function APIDocs (props) {
 
   return (
     <ScrollToTop>
-      {Row({
-        wrap: 'no',
-        children: (
-          <>
-            {BreakPoint({
-              sm: true,
-              children: function ({matchesAny}) {
-                return !matchesAny && MainSideBar()
-              }
-            })}
+      <Row wrap='no'>
+        <BreakPoint sm>
+          {function ({matchesAny}) {
+            return !matchesAny && MainSideBar()
+          }}
+        </BreakPoint>
 
-            {Box({
-              fluid: true,
-              className: [minWidth0, minHeightVP],
-              children: function ({className}) {
-                return (
-                  <div className={className}>
-                    <StickyHeader componentName={componentName}/>
+        <Box fluid className={[minWidth0, minHeightVP]}>
+          {function ({className}) {
+            return (
+              <div className={className}>
+                <BreakPoint sm>
+                  {function ({matchesAny}) {
+                    return matchesAny && <StickyHeader componentName={componentName}/>
+                  }}
+                </BreakPoint>
 
-                    <main>
-                      <LoadableDoc/>
-                    </main>
-                  </div>
-                )
-              }
-            })}
-          </>
-        )
-      })}
+                <Box pos='relative'>
+                  {function ({className}) {
+                    return (
+                      <main className={className}>
+                        <Theming {...props}/>
+                        <LoadableDoc/>
+                      </main>
+                    )
+                  }}
+                </Box>
+              </div>
+            )
+          }}
+        </Box>
+      </Row>
     </ScrollToTop>
   )
 }

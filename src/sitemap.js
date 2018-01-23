@@ -41,9 +41,11 @@ export const basics = [
 
 
 export const cssComponents = [
+  'createComponent',
   'Flex',
   'BasicBox',
   'Box',
+  'NodeBox'
 ]
 
 
@@ -100,21 +102,16 @@ export const utilityComponents = [
 
 export const utils = [
   'colorize',
-  'createComponent',
-  'createNode',
   'directionalScale',
-  'getTheme',
-  'supportsCSS',
   'withHoverQuery'
 ]
 
 
 export const theming = [
-  'injectTheme',
-  'replaceTheme',
+  'ThemeProvider',
+  'ThemeConsumer',
   'injectRem',
+  'mergeTheme',
   'defaultColors',
-  'defaultHoverColors',
-  'defaultActiveColors',
   'defaultTypeFaces'
 ]

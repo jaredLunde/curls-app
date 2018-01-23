@@ -8,11 +8,11 @@ import {home, curlsRepo} from '~/sitemap'
 
 const logoCSS = css`
   position: absolute;
-  top: 11px;
+  top: 6px;
   left: 0;
   right: 0;
   margin: 0 auto;
-  width: 64px;
+  width: 60px;
 `
 
 
@@ -43,7 +43,7 @@ export default class StickyHeader extends React.PureComponent {
                 h: 'auto',
                 p: 'x4 b4',
                 bw: 0,
-                bg: 'lightestGrey',
+                bg: 'accent',
                 pos: 'relative'
               })
             }
@@ -53,7 +53,7 @@ export default class StickyHeader extends React.PureComponent {
             className: logoCSS,
             to: home(),
             rel: 'home',
-            children: Icon({name: 'logo', size: 'x32', color: 'primaryLink'})
+            children: Icon({name: 'logo', size: 'x30'})
           })}
 
           {NavBar({
@@ -63,21 +63,16 @@ export default class StickyHeader extends React.PureComponent {
             bw: 0,
             fluid: true,
             bg: 'transparent',
-            children: (
-              <>
-                {A({
-                  href: curlsRepo(),
-                  rel: 'external',
-                  p: 3,
-                  children: Icon({
-                    color: 'primaryLink',
-                    name: 'gitHub',
-                    size: 'md',
-                    title: 'View Source on GitHub'
-                  })
-                })}
-              </>
-            )
+            children: A({
+              href: curlsRepo(),
+              rel: 'external',
+              p: 'x3 y2',
+              children: Icon({
+                name: 'gitHub',
+                size: '26',
+                title: 'View Source on GitHub'
+              })
+            })
           })}
         </>
       )

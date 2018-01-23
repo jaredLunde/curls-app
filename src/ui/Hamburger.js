@@ -1,11 +1,10 @@
 import React from 'react'
 import {css, cx} from 'emotion'
-import {Button, BasicBox, defaultColors, getTheme} from 'styled-curls'
+import {Button, BasicBox, defaultColors, mergeTheme} from 'styled-curls'
 
 
 const defaultTheme = {
-  defaultColor: 'primaryLink',
-  colors: defaultColors
+  defaultColor: 'emphasisText'
 }
 const themePath = 'hamburger'
 const lineCSS = css`
@@ -17,7 +16,7 @@ const lineCSS = css`
 `
 
 export default function (props) {
-  const theme = getTheme(defaultTheme, props.theme, themePath)
+  const theme = mergeTheme(defaultTheme, props.theme, themePath)
 
   return Button({
     column: true,

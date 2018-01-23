@@ -1,1 +1,1 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[222],{385:function(n,w,e){"use strict";e.r(w),w.default=["Grid","Flex"]}}]);
+(window.webpackJsonp=window.webpackJsonp||[]).push([[222],{333:function(e,n,o){"use strict";o.r(n),n.default="\n  The `Flex` component provides flex-specific styles to its child component.\n"}}]);

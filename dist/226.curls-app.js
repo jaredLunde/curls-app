@@ -1,1 +1,1 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[226],{331:function(o,n,e){"use strict";e.r(n),n.default="\n  The `BasicBox` component provides only box styles to its child component.\n  It does not include prop types for `Flex` or `Grid`.\n"}}]);
+(window.webpackJsonp=window.webpackJsonp||[]).push([[226],{336:function(n,o,e){"use strict";e.r(o),o.default="\n  The `Box` component provides `Flex` and `BasicBox` styles\n  to its child component.\n"}}]);

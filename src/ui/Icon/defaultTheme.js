@@ -10,5 +10,5 @@ export const scale = {
 
 export const defaultProps = {
   size: 'md',
-  color: 'darkerGrey'
+  color: 'emphasisText'
 }

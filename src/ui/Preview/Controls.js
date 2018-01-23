@@ -70,8 +70,7 @@ export default function Controls ({propTypes, onChange, ...props}) {
   return Box({
     flex: true,
     wrap: true,
-    bg: 'white',
-    bc: 'translucentLight',
+    bg: 'asideBg',
     bw: 't1',
     justify: 'center',
     ...props,

@@ -1,14 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {css} from 'emotion'
-import {Row, Col, Divider, Button, BreakPoint, Type, H1, H2, P, Box, A, NavBar, Flex, Grid, maxZIndex} from 'styled-curls'
-import {Hero, Icon, StickyHeader, MainSideBar} from '~/ui'
+import {Row, Col, ThemeConsumer, Divider, Button, BreakPoint, Type, H1, H2, P, Box, A, NavBar, Flex, Grid, maxZIndex} from 'styled-curls'
+import {Hero, Icon, StickyHeader, MainSideBar, Theming} from '~/ui'
 import {ScrollToTop} from '~/components'
 
 
 function InstallPre (props) {
   return Type({
-    color: 'black',
+    color: 'primaryText',
     face: 'mono',
     ...props
   })
@@ -32,18 +32,26 @@ export default function (props) {
             {Col({
               children: (
                 <>
-                  <StickyHeader/>
-                  <Hero nodeType='main'>
+                  {BreakPoint({
+                    sm: true,
+                    children: function ({matchesAny}) {
+                      return matchesAny && <StickyHeader/>
+                    }
+                  })}
+
+                  <Hero nodeType='main' pos='relative'>
+                    <Theming {...props}/>
+
                     {H1({
                       md: true,
                       center: true,
-                      color: 'darkestGrey',
+                      color: 'primaryText',
                       children: 'A lightweight, unopinionated CSS-in-JS UI component framework'
                     })}
 
                     {P({
                       m: 't2',
-                      color: 'darkestGrey',
+                      color: 'primaryText',
                       face: 'mono',
                       children: (
                         <>
@@ -65,7 +73,7 @@ export default function (props) {
                     })}
 
                     {Box({
-                      bg: 'lightestGrey',
+                      bg: 'asideHeaderBg',
                       p: 'x3 y2',
                       m: 't4 x1 b5',
                       bw: 1,

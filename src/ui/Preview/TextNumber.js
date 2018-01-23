@@ -14,7 +14,7 @@ export default function ({name, key, onChange, defaultValue = ''}) {
             id: inputID,
             type: 'ontouchstart' in window ? 'number' : 'text',
             onChange,
-            w: 50,
+            w: 70,
             defaultValue
           })}
 

@@ -75,7 +75,6 @@ module.exports = {
           pure_getters: true,
           unsafe: true,
           unsafe_comps: true,
-          unsafe_Func: true,
           unsafe_math: true,
           unsafe_regexp: true,
           warnings: false,

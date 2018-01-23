@@ -7,7 +7,7 @@ import Hamburger_ from './Hamburger'
 
 function CloseBox_ ({toggle}) {
   return Button({
-    bg: 'lightestGrey',
+    bg: 'accent',
     p: '4 b3',
     d: 'block',
     br: 0,

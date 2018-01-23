@@ -1,1 +1,1 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[93],{255:function(n,o,t){"use strict";t.r(o),o.default=function(n){return n in document.body.style}}}]);
+(window.webpackJsonp=window.webpackJsonp||[]).push([[93,238],{148:function(n,t,e){"use strict";e.r(t),e.d(t,"type",function(){return i});var o=e(340);e.d(t,"description",function(){return o.default});var i="Component"},340:function(n,t,e){"use strict";e.r(t),t.default="\n  The `Flex` component provides flex-specific styles to its child component.\n"}}]);

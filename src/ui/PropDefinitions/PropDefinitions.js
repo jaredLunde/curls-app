@@ -15,42 +15,36 @@ function PropType ({type, enumVals}) {
     types = types.join(' | ')
   }
 
-  return Type({
-    regular: true,
-    color: 'accentText',
-    face: 'mono',
-    children: Array.isArray(types) ? types.join('|') : types
-  })
+  return (
+    <Type regular color='accentText' face='mono'>
+      {Array.isArray(types) ? types.join('|') : types}
+    </Type>
+  )
 }
 
 
 function PropDefinition (propName, prop) {
-  return Box({
-    p: 'x2 t3 b1',
-    bw: 't1',
-    bg: 'asideBg',
-    children: ({className}) => (
-      <div key={propName} className={className}>
-        {H3({
-          sm: true,
-          d: 'inlineBlock',
-          bold: true,
-          m: 'r2 b2',
-          face: 'mono',
-          color: 'emphasisText',
-          children: propName
-        })}
+  return (
+    <Box key={propName} p='x2 t3 b1' bw='t1' bg='asideBg'>
+      {({className}) => (
+        <div key={propName} className={className}>
+          <H3 sm bold d='inlineBlock' m='r2 b2' face='mono' color='emphasisText'>
+            {propName}
+          </H3>
 
-        {"{"}{PropType(prop)}{"}"}
+          <Type color='emphasisText'>
+            {"{"}
+            {PropType(prop)}
+            {"}"}
+          </Type>
 
-        {Type({
-          color: 'accentText',
-          nodeType: 'div',
-          children: <Markdown source={prop.description}/>
-        })}
-      </div>
-    )
-  })
+          <Type nodeType='div' color='accentText'>
+            <Markdown source={prop.description}/>
+          </Type>
+        </div>
+      )}
+    </Box>
+  )
 }
 
 
@@ -62,5 +56,9 @@ export default function ({propTypes}) {
     children.push(PropDefinition(propName, prop))
   }
 
-  return ContentBox({heading: 'Props', children})
+  return (
+    <ContentBox heading='Props'>
+      {children}
+    </ContentBox>
+  )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import {BrowserRouter, Route, Switch, Link} from 'react-router-dom'
 import {injectGlobal} from 'emotion'
-import {injectTheme, theme as curlsTheme} from 'styled-curls'
+import {ThemeProvider, ThemeConsumer, injectRem} from 'styled-curls'
 import * as theme from './theme'
 import * as sitemap from './sitemap'
 import {Home, APIDoc} from './views'
@@ -10,9 +10,6 @@ import {version} from '../package.json'
 
 console.log(`%c➰`, 'font-size: 72px;')
 console.log(`%cCurls v${version}`, 'font-size: 24px;')
-console.log('[🎉 injectTheme]', theme)
-injectTheme(theme.main)
-
 
 injectGlobal`
   html {
@@ -27,9 +24,9 @@ injectGlobal`
       left: 0;
       right: 0;
       bottom: 0;
-      opacity: .24;
+      opacity: .20;
       z-index: -1;
-      background: url(https://t3.ftcdn.net/jpg/01/40/95/78/240_F_140957895_zs38qBJzRRqgTYmTBvc3PGFaukfY2eLr.jpg) repeat 0/64px 64px;
+      background: url(https://t3.ftcdn.net/jpg/01/40/95/78/240_F_140957895_zs38qBJzRRqgTYmTBvc3PGFaukfY2eLr.jpg) repeat 0/96px 96px;
     }
 
     background: ${theme.main.body.backgroundColor};
@@ -88,19 +85,63 @@ injectGlobal`
   }
 `
 
+
+
+const hours = new Date().getHours()
+
+
 export default function () {
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path={sitemap.home()} component={Home}/>
-        <Route
-          exact
-          path={sitemap.apiDoc({componentName: ':componentName'})}
-          component={APIDoc}
-        />
-        {/**404 route*/}
-        <Route component={Home}/>
-      </Switch>
-    </BrowserRouter>
-  )
+  return ThemeProvider({
+    theme: (
+      theme.cookies.theme.get()
+      ? theme[theme.cookies.theme.get()]
+      : hours < 18 && hours > 8
+        ? theme.main
+        : hours >=18 && hours < 21
+          ? theme.sepia
+          : theme.night
+
+    ),
+    children: function (themeProps) {
+      function withCurls (Component) {
+        return function (props) {
+          return Component({...themeProps, ...props})
+        }
+      }
+
+      const face = theme.cookies.typeFace.get()
+      if (face) {
+        themeProps.setTheme({type: {defaultProps: {face}}})
+      }
+
+      const fontSize = theme.cookies.fontSize.get()
+      if (fontSize) {
+        injectRem(`${fontSize}%`)
+      }
+
+      return (
+        <>
+          <BrowserRouter>
+            <Switch>
+              <Route exact path={sitemap.home()} component={withCurls(Home)}/>
+              <Route
+                exact
+                path={sitemap.apiDoc({componentName: ':componentName'})}
+                component={withCurls(APIDoc)}
+              />
+              {/**404 route*/}
+              <Route component={withCurls(Home)}/>
+            </Switch>
+          </BrowserRouter>
+
+          <ThemeConsumer path='body'>
+            {function ({theme}) {
+              document.body.style.backgroundColor = theme.colors[theme.backgroundColor] || theme.backgroundColor
+              return null
+            }}
+          </ThemeConsumer>
+        </>
+      )
+    }
+  })
 }

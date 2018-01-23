@@ -1,7 +1,6 @@
 export default {
   defaultProps: {
-    bg: 'white',
-    bc: 'translucentLight',
+    bg: 'asideBg',
     bw: 'y1'
   }
 }

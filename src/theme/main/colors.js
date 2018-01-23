@@ -2,8 +2,8 @@ import {defaultColors} from 'styled-curls'
 import {darken} from 'polished'
 
 
-const pink = '#F03861'
-const darkPink = darken(0.15, pink)
+export const pink = '#F03861'
+export const darkPink = darken(0.15, pink)
 
 
 export default {

@@ -5,6 +5,9 @@ import {Box, Card, H1, Divider, Type, Button, Drop, Overlay, defaultColors} from
 import {overflowX, markdown} from '~/styles'
 import {Styles} from '~/components'
 import {Preview, PropDefinitions, ThemeExample} from '~/ui'
+import {benchmark} from '~/utils'
+import memoize from 'memoize-two-args'
+import memoizeB from 'lru-memoize-map'
 
 
 const cardCSS = css`
@@ -15,42 +18,31 @@ const cardCSS = css`
 
 export default function Doc ({match, docs, ...props}) {
   const {componentName} = match.params
-  console.log('[Docs]', docs)
+  return !docs ? null : (
+    <Box flex justify='center' p='3 t4'>
+      {({className}) => (
+        <div className={className}>
+          <Box className={cardCSS} grow p='t2'>
+            {(boxProps) => (
+              <div {...boxProps}>
+                <H1 xl ultraHeavy face='mono' color='emphasisText' p='b3'>
+                  {componentName}
+                </H1>
 
-  return !docs ? null : Box({
-    flex: true,
-    justify: 'center',
-    p: 3,
-    children:  ({className}) => (
-      <div className={className}>
-        {Box({
-          className: cardCSS,
-          grow: true,
-          children: (boxProps) => (
-            <div {...boxProps}>
-              {H1({
-                color: 'emphasisText',
-                p: 't2 b3',
-                xl: true,
-                ultraHeavy: true,
-                children: componentName
-              })}
+                <Type d='block' color='primaryText' p='b3' className={markdown}>
+                  <Markdown source={docs && docs.description} {...props}/>
+                </Type>
 
-              {Box({
-                p: 'b3',
-                className: markdown,
-                children: props => <Markdown source={docs && docs.description} {...props}/>
-              })}
+                {PropDefinitions(docs)}
 
-              {PropDefinitions(docs)}
+                {docs.defaultTheme && ThemeExample(docs)}
 
-              {docs.defaultTheme && ThemeExample(docs)}
-
-              <Preview {...docs} componentName={componentName}/>
-            </div>
-          )
-        })}
-      </div>
-    )
-  })
+                <Preview {...docs} componentName={componentName}/>
+              </div>
+            )}
+          </Box>
+        </div>
+      )}
+    </Box>
+  )
 }

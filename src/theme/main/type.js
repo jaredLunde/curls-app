@@ -9,6 +9,7 @@ export default {
     xxl: 3
   },
   defaultProps: {
+    face: 'primary',
     color: 'primaryText'
   }
 }

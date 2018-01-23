@@ -1,0 +1,13 @@
+export const name = 'Yellow Shift'
+export body from './body'
+export box from '../main/box'
+export button from './button'
+export card from '../main/card'
+export input from '../main/input'
+import mainColors from '../main/colors'
+import nightColors from './colors'
+export const colors = {...mainColors, ...nightColors}
+export divider from '../main/divider'
+export navBar from '../main/navBar'
+export type from '../main/type'
+export typeFaces from '../main/typeFaces'

@@ -37,7 +37,7 @@ function ToggleableView ({
           <>
             {Row({
               wrap: false,
-              bg: 'darkestGrey',
+              bg: 'black',
               children: (
                 <>
                   {Heading({
@@ -71,7 +71,7 @@ function FlatView ({componentA, componentB, headingA, headingB}) {
     children: (
       <>
         {Row({
-          bg: 'darkestGrey',
+          bg: 'black',
           align: 'stretch',
           children: (
             <>

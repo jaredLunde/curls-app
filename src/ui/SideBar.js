@@ -1,3 +1,4 @@
+import React from 'react'
 import {css, cx} from 'emotion'
 import {NavBar, maxZIndex} from 'styled-curls'
 import {overflowY, minHeightVP} from '../styles'
@@ -9,19 +10,22 @@ const sideBarCSS = css`
 `
 
 export default function (props) {
-  return NavBar({
-    column: true,
-    h: '100vh',
-    fixed: true,
-    p: '3 b5',
-    bw: 'y1 r1',
-    align: 'start',
-    // sh: 16,
-    touchScrolling: true,
-    grow: false,
-    nodeType: 'nav',
-    pos: 'sticky',
-    ...props,
-    className: cx(sideBarCSS, props.className)
-  })
+  return (
+    <NavBar
+      nodeType='nav'
+      fixed
+      column
+      h='100vh'
+      p='3 b5'
+      bw='y1 r1'
+      align='start'
+      touchScrolling
+      grow={false}
+      pos='sticky'
+      {...props}
+      className={cx(sideBarCSS, props.className)}
+    >
+      {props.children}
+    </NavBar>
+  )
 }

@@ -33,7 +33,7 @@ module.exports = {
     // Directories that contain our modules
     symlinks: false,
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-    mainFields: ['jsnext:main', 'main', 'browser'],
+    mainFields: ['jsnext', 'esnext', 'jsnext:main', 'main', 'browser'],
     descriptionFiles: ['package.json'],
     moduleExtensions: ['-loader'],
     alias: {
