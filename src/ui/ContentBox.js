@@ -5,8 +5,8 @@ import {FlexBox, H2} from 'styled-curls'
 export default function (props) {
   return (
     <FlexBox br='t1' bw={1} {...props}>
-      {({className, heading, children}) => (
-        <div className={className}>
+      {({heading, ...flexProps}) => (
+        <div {...flexProps}>
           <H2
             sm
             ultraHeavy

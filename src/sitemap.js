@@ -36,6 +36,7 @@ export function curlsSrc (opt = {}) {
 export const basics = [
   'Installation',
   'Philosophy',
+  'Creating a Component',
   'Theming',
 ]
 

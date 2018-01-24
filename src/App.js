@@ -59,6 +59,7 @@ injectGlobal`
   }
 
   pre,
+  pre code,
   code {
     font-family: "Fira Code", monospace;
     white-space: pre;
@@ -69,6 +70,9 @@ injectGlobal`
 
   code {
     word-wrap: break-word;
+    background-color: rgba(120, 120, 120, 0.15);
+    padding: 0 6px;
+    border-radius: 4px;
   }
 
   pre {

@@ -1,8 +1,8 @@
 import Cookies from 'js-cookie'
 
 export * as main from './main'
-export * as night from './night'
 export * as sepia from './sepia'
+export * as night from './night'
 export const cookies = {
   fontSize: {
     get: () => Cookies.get('fontSize'),

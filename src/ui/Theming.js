@@ -1,10 +1,10 @@
 import React from 'react'
 import {css} from 'emotion'
-import {Drop, Button, Type, Row, Box, injectRem, maxZIndex} from 'styled-curls'
+import {Drop, Button, Type, Row, Box, injectRem} from 'styled-curls'
 import * as theme from '~/theme'
 
 
-const themingCSS = css`top: 0; right: 0; left: 0; ${maxZIndex}`
+const themingCSS = css`top: 0; right: 0; left: 0; z-index: 1;`
 
 
 function ThemeButton (props) {
@@ -37,6 +37,17 @@ function ButtonGroup (props) {
 }
 
 
+const themes = Object.keys(theme).map(
+  function (key) {
+    const t = theme[key]
+
+    if (t.name) {
+      return [key, t.name]
+    }
+  }
+).filter(t => t)
+
+
 export default function Theming (props) {
   function setTheme (nextTheme) {
     return function () {
@@ -63,8 +74,9 @@ export default function Theming (props) {
         const slideClassName = className
 
         return (
-          <Box flex row wrap='no' p='2' pos='absolute' className={themingCSS}>
+          <Box flex row wrap='no' pos='absolute' className={themingCSS}>
             <Row
+              p='2'
               fluid
               row='reverse'
               touchScrolling
@@ -73,23 +85,19 @@ export default function Theming (props) {
               className={slideClassName}
             >
               <ButtonGroup>
-                <ThemeButton onClick={setTheme('main')}>
-                  <Type>
-                    Stone
-                  </Type>
-                </ThemeButton>
-
-                <ThemeButton onClick={setTheme('sepia')}>
-                  <Type ellipsis>
-                    Yellow Shift
-                  </Type>
-                </ThemeButton>
-
-                <ThemeButton bw={0} onClick={setTheme('night')}>
-                  <Type>
-                    Night
-                  </Type>
-                </ThemeButton>
+                {themes.map(
+                  (t, x) => (
+                    <ThemeButton
+                      onClick={setTheme(t[0])}
+                      bw={x === themes.length -1 ? 0 : 'r1'}
+                      key={t}
+                    >
+                      <Type ellipsis>
+                        {t[1]}
+                      </Type>
+                    </ThemeButton>
+                  )
+                )}
               </ButtonGroup>
 
               <ButtonGroup align='end'>
@@ -121,7 +129,7 @@ export default function Theming (props) {
               </ButtonGroup>
             </Row>
 
-            <ThemeButton fixed bw={0} onClick={toggle}>
+            <ThemeButton fixed m='r1' bw={0} onClick={toggle}>
               <Type md>
                 ✎ Aa
               </Type>

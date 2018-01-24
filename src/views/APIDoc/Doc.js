@@ -1,7 +1,7 @@
 import React from 'react'
 import {css} from 'emotion'
 import Markdown from 'react-markdown'
-import {Box, Type, H1} from 'styled-curls'
+import {Box, P, H1} from 'styled-curls'
 import {overflowX, markdown} from '~/styles'
 import {Styles} from '~/components'
 import {Preview, PropDefinitions, ThemeExample} from '~/ui'
@@ -22,9 +22,9 @@ export default function Doc ({match, docs, ...props}) {
           {componentName}
         </H1>
 
-        <Type d='block' color='primaryText' p='b3' className={markdown}>
+        <P nodeType='div' m={0} d='block' color='primaryText' p='b3' className={markdown}>
           <Markdown source={docs && docs.description} {...props}/>
-        </Type>
+        </P>
 
         {PropDefinitions(docs)}
 

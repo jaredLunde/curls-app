@@ -1,6 +1,6 @@
 import React from 'react'
 import Markdown from 'react-markdown'
-import {H2, Type} from 'styled-curls'
+import {H2, P} from 'styled-curls'
 import {markdown} from '~/styles'
 import CodeBlock from './CodeBlock'
 import ContentBox from './ContentBox'
@@ -8,11 +8,11 @@ import ContentBox from './ContentBox'
 
 export default function ({defaultTheme}) {
   return (
-    <ContentBox m='t4' heading='Theme'>
+    <ContentBox m='t4' heading='Theme' id='theme-example'>
       {defaultTheme.details && (
-        <Type d='block' p='2 t3' bw='t1' bg='asideBg' color='primaryText' className={markdown}>
+        <P nodeType='div' m={0} d='block' p='2 t3' bw='t1' bg='asideBg' color='primaryText' className={markdown}>
           <Markdown source={defaultTheme.details}/>
-        </Type>
+        </P>
       )}
 
       {defaultTheme.example && CodeBlock({

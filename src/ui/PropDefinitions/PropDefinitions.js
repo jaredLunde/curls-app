@@ -1,7 +1,8 @@
 import React from 'react'
-import {Row, Flex, Box, Type, H2, H3, Divider} from 'styled-curls'
+import {Row, Flex, Box, Type, H2, H3, P, Divider} from 'styled-curls'
 import Markdown from 'react-markdown'
 import ContentBox from '../ContentBox'
+import {markdown} from '~/styles'
 
 
 function PropType ({type, enumVals}) {
@@ -36,9 +37,9 @@ function PropDefinition (propName, prop) {
         {"}"}
       </Type>
 
-      <Type nodeType='div' color='accentText'>
+      <P nodeType='div' color='accentText' className={markdown}>
         <Markdown source={prop.description}/>
-      </Type>
+      </P>
     </Box>
   )
 }
