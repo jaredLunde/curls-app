@@ -1,10 +1,10 @@
 import React from 'react'
 import {css} from 'emotion'
 import Markdown from 'react-markdown'
-import {Box, P, H1} from 'styled-curls'
+import {Box, P, H1, Avatar} from 'styled-curls'
 import {overflowX, markdown} from '~/styles'
 import {Styles} from '~/components'
-import {Preview, PropDefinitions, ThemeExample} from '~/ui'
+import {Preview, PropDefinitions, ThemeExample, CodeBlock, ContentBox} from '~/ui'
 
 
 const cardCSS = css`
@@ -26,11 +26,45 @@ export default function Doc ({match, docs, ...props}) {
           <Markdown source={docs && docs.description} {...props}/>
         </P>
 
+        {docs.usage && CodeBlock({
+          language: docs.type === 'Component' || docs.type === 'UIComponent' ? 'html' : 'js',
+          m: 'b4',
+          br: 1,
+          children: docs.usage.trim()
+        })}
+
         {PropDefinitions(docs)}
+
+        {docs.defaultCSS && ContentBox({
+          m:  't4',
+          heading: 'Styles',
+          children: (
+            <>
+              <P nodeType='div' p='2 t3' m={0} bw='t1' bg='asideBg'>
+                <Markdown>
+                  These are the default CSS styles applied to each component.
+                  The difference between this and `defaultProps` in the theme
+                  is that `defaultProps` are reserved for dynamic styles depending
+                  on scales and color definitions. These are static, but they
+                  may still be overridden using the `props` on the component
+                  or `defaultProps` in the theme.
+                </Markdown>
+
+              </P>
+
+              {CodeBlock({
+                language: 'css',
+                children: `.css-__ {\n  ${docs.defaultCSS.trim()}\n}`
+              })}
+            </>
+          )
+        })}
 
         {docs.defaultTheme && ThemeExample(docs)}
 
-        <Preview {...docs} componentName={componentName}/>
+        {docs.type !== 'Function' && (
+          <Preview {...docs} componentName={componentName}/>
+        )}
       </Box>
     </Box>
   )

@@ -32,7 +32,7 @@ function Heading (props) {
 const SideBarDivider = Divider({m: 'y3'})
 
 const activeClassName = css`color: ${theme.main.colors['darkPink']}!important;`
-function getLinks (componentNames, sitemap = apiDoc) {
+function getLinks (componentNames, sitemap = apiDoc, transform) {
   return componentNames.map(
     function (componentName) {
       return (
@@ -44,7 +44,7 @@ function getLinks (componentNames, sitemap = apiDoc) {
             p='y2 l3'
             activeClassName={activeClassName}
             ellipsis
-            to={sitemap({componentName})}
+            to={sitemap({componentName: transform ? transform(componentName) : componentName})}
           >
             {componentName}
           </NavLink>
@@ -55,7 +55,7 @@ function getLinks (componentNames, sitemap = apiDoc) {
 }
 
 
-function Section (heading, components, sitemap) {
+function Section (heading, components, sitemap, transform) {
   return (
     <BasicBox w='100%'>
       {({className}) => (
@@ -63,7 +63,7 @@ function Section (heading, components, sitemap) {
           {Heading({children: heading})}
 
           <ul>
-            {getLinks(components, sitemap)}
+            {getLinks(components, sitemap, transform)}
           </ul>
         </section>
       )}
@@ -88,7 +88,7 @@ export default function (props = {}) {
           }}
         </GridBox>
 
-        {Section('Getting Started', basics, guides)}
+        {Section('Getting Started', basics, guides, n => n.toLowerCase().replace(/\s/g, '-'))}
         {SideBarDivider}
 
         {Section('Base Components', cssComponents)}

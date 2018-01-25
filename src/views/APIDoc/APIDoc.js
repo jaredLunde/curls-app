@@ -14,6 +14,7 @@ import Doc from './Doc'
 const docAliases = {
   BasicBox: 'Box/docs/BasicBox',
   GridBox: 'Box/docs/GridBox',
+  FlexBox: 'Box/docs/FlexBox',
   A: 'Link/docs/A',
   NavLink: 'Link/docs/NavLink',
   H1: 'Type/docs/H1',

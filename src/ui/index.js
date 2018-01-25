@@ -1,5 +1,6 @@
 export PropDefinitions from './PropDefinitions'
 export CodeBlock from './CodeBlock'
+export ContentBox from './ContentBox'
 export Hamburger from './Hamburger'
 export HamburgerMenu from './HamburgerMenu'
 export Hero from './Hero'

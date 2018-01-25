@@ -19,7 +19,7 @@ export default function (props) {
       p='3 b5'
       bw='y1 r1'
       align='start'
-      touchScrolling
+      ov='touch autoY'
       grow={false}
       pos='sticky'
       {...props}

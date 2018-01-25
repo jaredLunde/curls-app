@@ -52,7 +52,7 @@ export default class Preview extends React.PureComponent {
       const key = objKeys[x]
       out[key] = propTypes[key].defaultValue
     }
-    
+
     let children
     switch (type) {
       case 'Component':

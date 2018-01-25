@@ -28,10 +28,22 @@ const functionDivChild = `function ({className}) {
   }`
 
 
-function whichChildren (type) {
+function whichChildren (type, children, style = 'jsx') {
   switch (type) {
     case 'Component':
-      return functionDivChild
+      return style === 'jsx' ? `{${functionDivChild}}` : functionDivChild
+    case 'UIComponent':
+      if (typeof children === 'string') {
+        if (style === 'func') {
+          return `'${children}'`
+        }
+        else {
+          return children
+        }
+      }
+      else {
+        return null
+      }
     default:
       return null
   }
@@ -44,14 +56,16 @@ const quoteReplaceRe = /"/g
 
 
 export default function (name, type, state, isFunctional) {
+  const children = state.children
+
   if (isFunctional) {
-    const children = state.children
     delete state.children
     state.children = children  // puts children at the end of the object
+
     const obj = (
       JSON
       .stringify(state, stringifyReplacer, 2)
-      .replace('"{{children}}"', whichChildren(type))
+      .replace('"{{children}}"', whichChildren(type, children, 'func'))
       .replace(replaceKeysRe, '$1:')
       .replace(quoteReplaceRe, "'")
     )
@@ -67,7 +81,7 @@ export default function (name, type, state, isFunctional) {
         stringState += `  ${key}${quote(val)}\n`
       }
     )
-
-    return `<${name}${stringState ? '\n' : ''}${stringState}>\n  {${whichChildren(type)}}\n</${name}>`
+    const _c = whichChildren(type, children, 'jsx')
+    return `<${name}${stringState ? '\n' : ''}${stringState}>\n  ${_c}\n</${name}>`
   }
 }

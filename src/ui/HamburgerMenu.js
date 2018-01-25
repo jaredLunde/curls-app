@@ -42,7 +42,7 @@ export default function HamburgerMenu ({
                 {DrawerBox({
                   className: drawerCSS,
                   w: '100%',
-                  touchScrolling: true,
+                  ov: 'touch',
                   children: function ({isVisible, toggle}) {
                     return(
                       <>

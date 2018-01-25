@@ -77,10 +77,9 @@ export default function Theming (props) {
           <Box flex row wrap='no' pos='absolute' className={themingCSS}>
             <Row
               p='2'
-              fluid
+              shrink
               row='reverse'
-              touchScrolling
-              ov='autoX'
+              ov='autoX touch'
               wrap='no'
               className={slideClassName}
             >
